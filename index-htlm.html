@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)file:///C:/Users/Full%20%20PC%20%20Gamer/Downloads/index.htlm.html -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="B&amp;T Tracker">
+<title>Blood &amp; Turbo — Tracker</title>
+<style>
+  :root {
+    --bg: #0a0a10;
+    --bg2: #12121e;
+    --bg3: #1a1a28;
+    --border: #252535;
+    --text: #e0e0ee;
+    --text2: #888899;
+    --accent: #4a9eff;
+    --green: #4ade80;
+    --red: #f87171;
+    --orange: #fb923c;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 15px; overscroll-behavior: none; }
+  body { display: flex; flex-direction: column; max-width: 480px; margin: 0 auto; }
+
+  /* NAV */
+  .nav { display: flex; background: var(--bg2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .nav-btn { flex: 1; padding: 14px 4px 12px; background: none; border: none; border-bottom: 2px solid transparent; color: var(--text2); font-size: 11px; letter-spacing: 0.5px; cursor: pointer; font-family: inherit; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .nav-btn.active { border-bottom-color: var(--accent); color: var(--accent); }
+  .nav-icon { font-size: 20px; }
+
+  /* CONTENT */
+  .page { display: none; flex: 1; overflow-y: auto; padding: 16px; padding-bottom: 24px; }
+  .page.active { display: block; }
+
+  /* CARDS */
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; }
+  .card-title { font-size: 12px; font-weight: 600; color: var(--text2); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
+
+  /* HEADER */
+  .app-header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; }
+  .app-title { font-size: 17px; font-weight: 700; letter-spacing: 1px; color: var(--text); }
+  .app-sub { font-size: 11px; color: var(--text2); margin-top: 1px; }
+
+  /* FORM ELEMENTS */
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .field label { font-size: 13px; color: var(--text2); }
+  input, select, textarea { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; color: var(--text); font-size: 16px; font-family: inherit; width: 100%; -webkit-appearance: none; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); }
+  select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888899' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+  /* BUTTONS */
+  .btn { width: 100%; padding: 15px; border: none; border-radius: var(--radius); font-size: 16px; font-weight: 600; cursor: pointer; font-family: inherit; letter-spacing: 0.3px; }
+  .btn-primary { background: var(--accent); color: #000; }
+  .btn-primary:active { opacity: 0.85; }
+  .btn-danger { background: none; border: 1px solid #f8717166; color: var(--red); border-radius: var(--radius-sm); padding: 8px 12px; font-size: 13px; cursor: pointer; font-family: inherit; }
+  .btn-ghost { background: none; border: 1px solid var(--border); color: var(--text2); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 14px; cursor: pointer; font-family: inherit; }
+  .btn-add { width: 100%; padding: 12px; background: var(--bg3); border: 1px dashed var(--border); border-radius: var(--radius-sm); color: var(--text2); font-size: 14px; cursor: pointer; font-family: inherit; margin-bottom: 8px; }
+  .btn-add:active { background: var(--bg2); }
+  .btn-sm { padding: 8px 14px; font-size: 13px; border-radius: var(--radius-sm); border: none; cursor: pointer; font-family: inherit; }
+  .btn-green { background: var(--green); color: #000; font-weight: 600; }
+
+  /* EXERCISE BLOCK */
+  .ex-block { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; }
+  .ex-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .ex-name { font-size: 14px; font-weight: 600; color: var(--text); }
+  .set-header { display: grid; grid-template-columns: 28px 1fr 1fr 1fr 36px; gap: 6px; margin-bottom: 6px; }
+  .set-header span { font-size: 11px; color: var(--text2); text-align: center; }
+  .set-row { display: grid; grid-template-columns: 28px 1fr 1fr 1fr 36px; gap: 6px; align-items: center; margin-bottom: 6px; }
+  .set-num { text-align: center; font-size: 13px; color: var(--text2); font-weight: 500; }
+  .set-row input { padding: 10px 8px; font-size: 15px; text-align: center; }
+  .set-row select { padding: 10px 4px; font-size: 14px; text-align: center; }
+  .set-del { background: none; border: none; color: var(--red); font-size: 18px; cursor: pointer; padding: 4px; line-height: 1; }
+  .add-set-btn { background: none; border: none; color: var(--accent); font-size: 13px; cursor: pointer; padding: 6px 0; font-family: inherit; }
+
+  /* HISTORY */
+  .session-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; }
+  .session-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .session-date { font-size: 13px; color: var(--text2); }
+  .session-type { font-size: 14px; font-weight: 600; color: var(--text); }
+  .ex-history { padding: 8px 0; border-top: 1px solid var(--border); }
+  .ex-history-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center; }
+  .ex-history-sets { font-size: 12px; color: var(--text2); line-height: 1.6; }
+  .delta { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
+  .delta-up { background: rgba(74,222,128,0.15); color: var(--green); }
+  .delta-down { background: rgba(248,113,113,0.15); color: var(--red); }
+  .delta-eq { background: var(--bg3); color: var(--text2); }
+
+  /* PERF PAGE */
+  .ex-perf-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; cursor: pointer; }
+  .ex-perf-name { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .ex-perf-best { font-size: 22px; font-weight: 700; color: var(--accent); }
+  .ex-perf-unit { font-size: 13px; color: var(--text2); }
+  .ex-perf-hist { margin-top: 10px; display: none; }
+  .ex-perf-hist.open { display: block; }
+  .perf-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .perf-row:last-child { border-bottom: none; }
+
+  /* TAGS / RPE */
+  .rpe-opts { display: flex; gap: 6px; }
+  .rpe-opt { flex: 1; padding: 10px 4px; background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; text-align: center; cursor: pointer; color: var(--text2); font-family: inherit; }
+  .rpe-opt.active { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 700; }
+
+  /* TOAST */
+  .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: 10px 22px; border-radius: 30px; font-size: 14px; font-weight: 500; opacity: 0; transition: opacity 0.25s; pointer-events: none; z-index: 999; white-space: nowrap; }
+  .toast.show { opacity: 1; }
+
+  /* EMPTY */
+  .empty { text-align: center; padding: 48px 16px; color: var(--text2); font-size: 14px; line-height: 1.6; }
+  .empty-icon { font-size: 40px; margin-bottom: 12px; }
+
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; align-items: flex-end; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--bg2); border-radius: 20px 20px 0 0; padding: 20px 16px 32px; width: 100%; max-height: 80vh; overflow-y: auto; }
+  .modal-title { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+  .modal-close { float: right; background: none; border: none; color: var(--text2); font-size: 20px; cursor: pointer; }
+
+  /* CHIPS */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .chip { padding: 8px 14px; background: var(--bg3); border: 1px solid var(--border); border-radius: 30px; font-size: 13px; cursor: pointer; color: var(--text2); font-family: inherit; }
+  .chip:active { background: var(--accent); color: #000; border-color: var(--accent); }
+
+  /* SEPARATOR */
+  .sep { height: 1px; background: var(--border); margin: 14px 0; }
+  .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+  .tag-green { background: rgba(74,222,128,0.15); color: var(--green); }
+  .tag-blue { background: rgba(74,158,255,0.15); color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="app-header">
+  <div>
+    <div class="app-title">BLOOD &amp; TURBO</div>
+    <div class="app-sub">Tracker de performance</div>
+  </div>
+  <div id="header-date" style="font-size:12px;color:var(--text2);text-align:right">mer. 13 mai</div>
+</div>
+
+<nav class="nav">
+  <button class="nav-btn active" onclick="showPage(&#39;saisie&#39;)" id="nav-saisie">
+    <span class="nav-icon">＋</span><span>Séance</span>
+  </button>
+  <button class="nav-btn" onclick="showPage(&#39;perfs&#39;)" id="nav-perfs">
+    <span class="nav-icon">📊</span><span>Perfs</span>
+  </button>
+  <button class="nav-btn" onclick="showPage(&#39;historique&#39;)" id="nav-historique">
+    <span class="nav-icon">📋</span><span>Historique</span>
+  </button>
+  <button class="nav-btn" onclick="showPage(&#39;exercices&#39;)" id="nav-exercices">
+    <span class="nav-icon">⚙️</span><span>Exos</span>
+  </button>
+</nav>
+
+<!-- SAISIE -->
+<div class="page active" id="page-saisie">
+  <div class="card">
+    <div class="card-title">Nouvelle séance</div>
+    <div class="field">
+      <label>Date</label>
+      <input type="date" id="s-date">
+    </div>
+    <div class="field">
+      <label>Type de séance</label>
+      <select id="s-type" onchange="onTypeChange()"><option value="LUNDI — DOS">LUNDI — DOS</option><option value="MERCREDI — BI/PECS">MERCREDI — BI/PECS</option><option value="JEUDI — JAMBES">JEUDI — JAMBES</option><option value="SAMEDI — ÉP/TRI/BI">SAMEDI — ÉP/TRI/BI</option><option value="Cardio / autre">Cardio / autre</option></select>
+    </div>
+  </div>
+
+  <div id="exercises-list"><div class="ex-block" id="ex-0">
+    <div class="ex-header">
+      <div class="ex-name">Exercice 1</div>
+      <button class="btn-danger" onclick="removeEx(0)">Supprimer</button>
+    </div>
+    <div class="field" style="margin-bottom:10px">
+      <select id="ex-sel-0" onchange="onExSelChange(0)">
+        <option value="Tirage V poulie unilatéral">Tirage V poulie unilatéral</option><option value="Rowing Yates pronation">Rowing Yates pronation</option><option value="Rowing Hammer focus trapèzes">Rowing Hammer focus trapèzes</option><option value="Pull-over poulie">Pull-over poulie</option><option value="Élévations post. poulie">Élévations post. poulie</option><option value="Reverse pec fly">Reverse pec fly</option><option value="Oiseau haltères buste penché">Oiseau haltères buste penché</option><option value="SDT jambes semi-tendues">SDT jambes semi-tendues</option><option value="Extension lombaires">Extension lombaires</option>
+        <option value="__custom__">Autre (saisie libre)...</option>
+      </select>
+    </div>
+    <div id="ex-custom-0" style="display:none" class="field">
+      <input type="text" placeholder="Nom de l&#39;exercice" id="ex-custom-input-0">
+    </div>
+    <div class="set-header">
+      <span>#</span><span>kg</span><span>Reps</span><span>RPE</span><span></span>
+    </div>
+    <div id="sets-0">
+    <div class="set-row">
+      <div class="set-num">1</div>
+      <input type="number" inputmode="decimal" step="0.5" placeholder="kg" value="" onchange="currentSets[0].sets[0].charge = this.value">
+      <input type="number" inputmode="numeric" placeholder="reps" value="" onchange="currentSets[0].sets[0].reps = this.value">
+      <select onchange="currentSets[0].sets[0].rpe = this.value">
+        <option value="">—</option>
+        <option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+      </select>
+      <button class="set-del" onclick="removeSet(0, 0)">×</button>
+    </div>
+  </div>
+    <button class="add-set-btn" onclick="addSet(0)">＋ Ajouter une série</button>
+  </div></div>
+
+  <button class="btn-add" onclick="addExercise()">＋ Ajouter un exercice</button>
+
+  <div style="margin-top:8px">
+    <button class="btn btn-primary" onclick="saveSession()">Enregistrer la séance</button>
+  </div>
+</div>
+
+<!-- PERFS -->
+<div class="page" id="page-perfs">
+  <div class="card" style="padding:12px 14px;margin-bottom:8px">
+    <input type="text" id="perf-search" placeholder="🔍 Rechercher un exercice..." oninput="renderPerfs()" style="background:none;border:none;padding:0;font-size:15px;width:100%">
+  </div>
+  <div id="perfs-list"></div>
+</div>
+
+<!-- HISTORIQUE -->
+<div class="page" id="page-historique">
+  <div id="history-list"></div>
+</div>
+
+<!-- EXERCICES PERSONNALISÉS -->
+<div class="page" id="page-exercices">
+  <div class="card">
+    <div class="card-title">Ajouter un exercice</div>
+    <div class="field">
+      <label>Nom de l'exercice</label>
+      <input type="text" id="new-ex-name" placeholder="ex: Curl concentration haltère">
+    </div>
+    <div class="field">
+      <label>Groupe musculaire (séance)</label>
+      <select id="new-ex-group"><option value="LUNDI — DOS">LUNDI — DOS</option><option value="MERCREDI — BI/PECS">MERCREDI — BI/PECS</option><option value="JEUDI — JAMBES">JEUDI — JAMBES</option><option value="SAMEDI — ÉP/TRI/BI">SAMEDI — ÉP/TRI/BI</option><option value="Cardio / autre">Cardio / autre</option></select>
+    </div>
+    <button class="btn btn-primary" onclick="addCustomExercise()" style="margin-top:4px">Ajouter</button>
+  </div>
+
+  <div class="card" id="custom-ex-list-card" style="display:none">
+    <div class="card-title">Exercices personnalisés</div>
+    <div id="custom-ex-list"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const DEFAULT_EXERCISES = {
+  "LUNDI — DOS": [
+    "Tirage V poulie unilatéral","Rowing Yates pronation","Rowing Hammer focus trapèzes",
+    "Pull-over poulie","Élévations post. poulie","Reverse pec fly",
+    "Oiseau haltères buste penché","SDT jambes semi-tendues","Extension lombaires"
+  ],
+  "MERCREDI — BI/PECS": [
+    "Tractions neutres","Développé couché barre","Curl incliné haltères",
+    "Curl pupitre","Développé machine Hammer","Câble croisé / Pec fly","Curl marteau"
+  ],
+  "JEUDI — JAMBES": [
+    "Leg extension machine","Presse inclinée","Mollets presse","Hack squat",
+    "Cyclist squat","Leg curl assis machine","SDT jambes tendues",
+    "Mollets debout","Adducteurs machine"
+  ],
+  "SAMEDI — ÉP/TRI/BI": [
+    "OHP assis haltères","Élévations lat. haltères","Élévations lat. poulie",
+    "Shrug haltères","Curl barre EZ","Extension triceps barre EZ",
+    "Extension triceps poulie cordes"
+  ],
+  "Cardio / autre": []
+};
+
+let db = {
+  sessions: [],
+  customExercises: {}  // { groupKey: [name, ...] }
+};
+
+let currentSets = []; // [{ exIdx, sets:[{charge,reps,rpe}] }]
+let openPerfs = {};
+
+// ── STORAGE ──
+function saveDB() {
+  try { localStorage.setItem('bt_tracker_v1', JSON.stringify(db)); } catch(e) {}
+}
+
+function loadDB() {
+  try {
+    const raw = localStorage.getItem('bt_tracker_v1');
+    if (raw) db = JSON.parse(raw);
+  } catch(e) {}
+}
+
+// ── UTILS ──
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+function todayStr() {
+  return new Date().toISOString().split('T')[0];
+}
+
+function fmtDate(str) {
+  return new Date(str + 'T12:00:00').toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'short' });
+}
+
+function getAllExercises() {
+  const all = {};
+  Object.keys(DEFAULT_EXERCISES).forEach(g => {
+    all[g] = [...DEFAULT_EXERCISES[g]];
+  });
+  Object.entries(db.customExercises || {}).forEach(([g, exs]) => {
+    if (!all[g]) all[g] = [];
+    exs.forEach(e => { if (!all[g].includes(e)) all[g].push(e); });
+  });
+  return all;
+}
+
+function getAllExercisesList() {
+  const all = getAllExercises();
+  const list = [];
+  Object.entries(all).forEach(([g, exs]) => exs.forEach(e => list.push({ name: e, group: g })));
+  return list;
+}
+
+// ── NAV ──
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  document.getElementById('nav-' + page).classList.add('active');
+  if (page === 'historique') renderHistory();
+  if (page === 'perfs') renderPerfs();
+  if (page === 'exercices') renderCustomExPage();
+}
+
+// ── INIT ──
+function init() {
+  loadDB();
+
+  // Date header
+  document.getElementById('header-date').textContent = fmtDate(todayStr());
+
+  // Default date
+  document.getElementById('s-date').value = todayStr();
+
+  // Populate type select
+  const sel = document.getElementById('s-type');
+  sel.innerHTML = '';
+  Object.keys(DEFAULT_EXERCISES).forEach(g => {
+    const opt = document.createElement('option');
+    opt.value = g;
+    opt.textContent = g;
+    sel.appendChild(opt);
+  });
+
+  // Populate group select for custom ex
+  const gsel = document.getElementById('new-ex-group');
+  gsel.innerHTML = '';
+  Object.keys(DEFAULT_EXERCISES).forEach(g => {
+    const opt = document.createElement('option');
+    opt.value = g;
+    opt.textContent = g;
+    gsel.appendChild(opt);
+  });
+
+  // Init first exercise
+  currentSets = [];
+  addExercise();
+}
+
+function onTypeChange() {
+  currentSets = [];
+  document.getElementById('exercises-list').innerHTML = '';
+  addExercise();
+}
+
+// ── SAISIE ──
+function addExercise() {
+  const group = document.getElementById('s-type').value;
+  const allEx = getAllExercises();
+  const exList = allEx[group] || [];
+  const idx = currentSets.length;
+  currentSets.push({ sets: [{ charge: '', reps: '', rpe: '' }] });
+
+  const container = document.getElementById('exercises-list');
+  const div = document.createElement('div');
+  div.className = 'ex-block';
+  div.id = 'ex-' + idx;
+
+  div.innerHTML = `
+    <div class="ex-header">
+      <div class="ex-name">Exercice ${idx + 1}</div>
+      <button class="btn-danger" onclick="removeEx(${idx})">Supprimer</button>
+    </div>
+    <div class="field" style="margin-bottom:10px">
+      <select id="ex-sel-${idx}" onchange="onExSelChange(${idx})">
+        ${exList.map(e => `<option value="${e}">${e}</option>`).join('')}
+        <option value="__custom__">Autre (saisie libre)...</option>
+      </select>
+    </div>
+    <div id="ex-custom-${idx}" style="display:none" class="field">
+      <input type="text" placeholder="Nom de l'exercice" id="ex-custom-input-${idx}" />
+    </div>
+    <div class="set-header">
+      <span>#</span><span>kg</span><span>Reps</span><span>RPE</span><span></span>
+    </div>
+    <div id="sets-${idx}"></div>
+    <button class="add-set-btn" onclick="addSet(${idx})">＋ Ajouter une série</button>
+  `;
+  container.appendChild(div);
+  renderSets(idx);
+}
+
+function onExSelChange(idx) {
+  const sel = document.getElementById('ex-sel-' + idx);
+  const customWrap = document.getElementById('ex-custom-' + idx);
+  customWrap.style.display = sel.value === '__custom__' ? '' : 'none';
+}
+
+function removeEx(idx) {
+  const el = document.getElementById('ex-' + idx);
+  if (el) el.remove();
+  currentSets[idx] = null;
+}
+
+function addSet(exIdx) {
+  if (!currentSets[exIdx]) return;
+  currentSets[exIdx].sets.push({ charge: '', reps: '', rpe: '' });
+  renderSets(exIdx);
+}
+
+function removeSet(exIdx, setIdx) {
+  if (!currentSets[exIdx] || currentSets[exIdx].sets.length <= 1) return;
+  currentSets[exIdx].sets.splice(setIdx, 1);
+  renderSets(exIdx);
+}
+
+function renderSets(exIdx) {
+  const container = document.getElementById('sets-' + exIdx);
+  if (!container || !currentSets[exIdx]) return;
+  container.innerHTML = currentSets[exIdx].sets.map((s, si) => `
+    <div class="set-row">
+      <div class="set-num">${si + 1}</div>
+      <input type="number" inputmode="decimal" step="0.5" placeholder="kg"
+        value="${s.charge || ''}"
+        onchange="currentSets[${exIdx}].sets[${si}].charge = this.value" />
+      <input type="number" inputmode="numeric" placeholder="reps"
+        value="${s.reps || ''}"
+        onchange="currentSets[${exIdx}].sets[${si}].reps = this.value" />
+      <select onchange="currentSets[${exIdx}].sets[${si}].rpe = this.value">
+        <option value="">—</option>
+        ${[6,7,8,9,10].map(r => `<option value="${r}" ${s.rpe == r ? 'selected' : ''}>${r}</option>`).join('')}
+      </select>
+      <button class="set-del" onclick="removeSet(${exIdx}, ${si})">×</button>
+    </div>
+  `).join('');
+}
+
+function saveSession() {
+  const date = document.getElementById('s-date').value;
+  const type = document.getElementById('s-type').value;
+
+  const exercises = currentSets.filter(Boolean).map((ex, idx) => {
+    const realIdx = currentSets.indexOf(ex);
+    const sel = document.getElementById('ex-sel-' + realIdx);
+    let name = '';
+    if (sel) {
+      if (sel.value === '__custom__') {
+        name = document.getElementById('ex-custom-input-' + realIdx)?.value?.trim() || '';
+      } else {
+        name = sel.value;
+      }
+    }
+    const sets = ex.sets.filter(s => s.charge || s.reps);
+    return { name, sets };
+  }).filter(ex => ex.name && ex.sets.length);
+
+  if (!exercises.length) { toast('Remplis au moins un exercice'); return; }
+
+  db.sessions.push({ id: Date.now(), date, type, exercises });
+  saveDB();
+  toast('✅ Séance enregistrée');
+
+  // Reset
+  currentSets = [];
+  document.getElementById('exercises-list').innerHTML = '';
+  document.getElementById('s-date').value = todayStr();
+  addExercise();
+}
+
+// ── HISTORIQUE ──
+function renderHistory() {
+  const el = document.getElementById('history-list');
+  if (!db.sessions.length) {
+    el.innerHTML = '<div class="empty"><div class="empty-icon">📋</div>Aucune séance enregistrée.</div>';
+    return;
+  }
+
+  const sorted = [...db.sessions].sort((a, b) => b.date.localeCompare(a.date));
+  el.innerHTML = sorted.map(s => {
+    // Find previous same-type session
+    const prevIdx = sorted.findIndex(ps => ps.id === s.id) + 1;
+    const prev = sorted.slice(prevIdx).find(ps => ps.type === s.type);
+
+    return `
+    <div class="session-card">
+      <div class="session-header">
+        <div>
+          <div class="session-date">${fmtDate(s.date)}</div>
+          <div class="session-type">${s.type}</div>
+        </div>
+        <button class="btn-danger" onclick="deleteSession(${s.id})">🗑</button>
+      </div>
+      ${s.exercises.map(ex => {
+        const prevEx = prev?.exercises.find(pe => pe.name === ex.name);
+        const best = ex.sets.reduce((b, st) => !b || parseFloat(st.charge || 0) > parseFloat(b.charge || 0) ? st : b, null);
+        const prevBest = prevEx?.sets.reduce((b, st) => !b || parseFloat(st.charge || 0) > parseFloat(b.charge || 0) ? st : b, null);
+        const delta = best && prevBest ? parseFloat(best.charge || 0) - parseFloat(prevBest.charge || 0) : null;
+
+        return `<div class="ex-history">
+          <div class="ex-history-name">
+            <span>${ex.name}</span>
+            ${delta !== null ? `<span class="delta ${delta > 0 ? 'delta-up' : delta < 0 ? 'delta-down' : 'delta-eq'}">${delta > 0 ? '+' : ''}${delta}kg</span>` : ''}
+          </div>
+          <div class="ex-history-sets">${ex.sets.filter(s => s.charge || s.reps).map((st, i) =>
+            `S${i+1}: ${st.charge || '?'}kg × ${st.reps || '?'} reps${st.rpe ? ' · RPE ' + st.rpe : ''}`
+          ).join(' &nbsp;|&nbsp; ')}</div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  }).join('');
+}
+
+function deleteSession(id) {
+  if (!confirm('Supprimer cette séance ?')) return;
+  db.sessions = db.sessions.filter(s => s.id !== id);
+  saveDB();
+  toast('Séance supprimée');
+  renderHistory();
+}
+
+// ── PERFS ──
+function renderPerfs() {
+  const el = document.getElementById('perfs-list');
+  const search = (document.getElementById('perf-search')?.value || '').toLowerCase();
+
+  // Build exercise performance map
+  const perfMap = {};
+  db.sessions.forEach(s => {
+    s.exercises.forEach(ex => {
+      if (!perfMap[ex.name]) perfMap[ex.name] = [];
+      const best = ex.sets.reduce((b, st) => !b || parseFloat(st.charge || 0) > parseFloat(b.charge || 0) ? st : b, null);
+      if (best) perfMap[ex.name].push({ date: s.date, best, sets: ex.sets });
+    });
+  });
+
+  const names = Object.keys(perfMap).filter(n => !search || n.toLowerCase().includes(search)).sort();
+
+  if (!names.length) {
+    el.innerHTML = '<div class="empty"><div class="empty-icon">📊</div>Enregistre des séances pour voir tes perfs.</div>';
+    return;
+  }
+
+  el.innerHTML = names.map(name => {
+    const history = perfMap[name].sort((a, b) => b.date.localeCompare(a.date));
+    const latest = history[0];
+    const prev = history[1];
+    const delta = latest && prev ? parseFloat(latest.best.charge || 0) - parseFloat(prev.best.charge || 0) : null;
+    const isOpen = openPerfs[name];
+
+    return `
+    <div class="ex-perf-card" onclick="togglePerf('${name.replace(/'/g,"\\'")}')">
+      <div class="ex-perf-name">${name}</div>
+      <div style="display:flex;align-items:baseline;gap:10px">
+        <div class="ex-perf-best">${latest.best.charge || '?'}<span class="ex-perf-unit"> kg</span></div>
+        <div style="font-size:13px;color:var(--text2)">× ${latest.best.reps || '?'} reps</div>
+        ${delta !== null ? `<span class="delta ${delta > 0 ? 'delta-up' : delta < 0 ? 'delta-down' : 'delta-eq'}">${delta > 0 ? '+' : ''}${delta}kg</span>` : ''}
+      </div>
+      <div style="font-size:12px;color:var(--text2);margin-top:4px">${fmtDate(latest.date)} ${latest.best.rpe ? '· RPE ' + latest.best.rpe : ''}</div>
+
+      <div class="ex-perf-hist ${isOpen ? 'open' : ''}">
+        <div class="sep"></div>
+        ${history.map((h, i) => `
+          <div class="perf-row">
+            <span style="color:var(--text2)">${fmtDate(h.date)}</span>
+            <span>${h.best.charge || '?'}kg × ${h.best.reps || '?'}${h.best.rpe ? ' · RPE'+h.best.rpe : ''}</span>
+          </div>`).join('')}
+      </div>
+      <div style="text-align:center;font-size:12px;color:var(--text2);margin-top:8px">${isOpen ? '▲ Masquer' : '▼ Historique complet'}</div>
+    </div>`;
+  }).join('');
+}
+
+function togglePerf(name) {
+  openPerfs[name] = !openPerfs[name];
+  renderPerfs();
+}
+
+// ── EXERCICES PERSONNALISÉS ──
+function addCustomExercise() {
+  const name = document.getElementById('new-ex-name').value.trim();
+  const group = document.getElementById('new-ex-group').value;
+  if (!name) { toast('Entre un nom d\'exercice'); return; }
+
+  if (!db.customExercises[group]) db.customExercises[group] = [];
+  if (db.customExercises[group].includes(name)) { toast('Exercice déjà existant'); return; }
+
+  db.customExercises[group].push(name);
+  saveDB();
+  document.getElementById('new-ex-name').value = '';
+  toast('✅ Exercice ajouté');
+  renderCustomExPage();
+}
+
+function deleteCustomEx(group, name) {
+  if (!db.customExercises[group]) return;
+  db.customExercises[group] = db.customExercises[group].filter(e => e !== name);
+  saveDB();
+  toast('Exercice supprimé');
+  renderCustomExPage();
+}
+
+function renderCustomExPage() {
+  const card = document.getElementById('custom-ex-list-card');
+  const list = document.getElementById('custom-ex-list');
+
+  const hasCustom = Object.values(db.customExercises || {}).some(arr => arr.length > 0);
+  card.style.display = hasCustom ? '' : 'none';
+
+  if (!hasCustom) return;
+
+  list.innerHTML = Object.entries(db.customExercises).filter(([,arr]) => arr.length).map(([group, exs]) => `
+    <div style="margin-bottom:12px">
+      <div style="font-size:11px;color:var(--text2);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">${group}</div>
+      ${exs.map(ex => `
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)">
+          <span style="font-size:14px">${ex}</span>
+          <button class="btn-danger" onclick="deleteCustomEx('${group.replace(/'/g,"\\'")}','${ex.replace(/'/g,"\\'")}')">Suppr.</button>
+        </div>`).join('')}
+    </div>`).join('');
+}
+
+init();
+</script>
+
+
+</body></html>
