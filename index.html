@@ -23,37 +23,39 @@ body{display:flex;flex-direction:column;max-width:480px;margin:0 auto;}
 .pg.active{display:block;}
 .card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:10px;}
 .ct{font-size:10px;font-weight:700;color:var(--text2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;}
-.days{display:flex;gap:7px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px;}
-.db{flex:0 0 auto;padding:9px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:25px;color:var(--text2);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;}
+.days{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px;}
+.db{flex:0 0 auto;padding:8px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:25px;color:var(--text2);font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;}
 /* FORCE */
-.force-card{border-radius:var(--r);padding:14px;margin-bottom:10px;border:1px solid;background:linear-gradient(135deg,#1a0810,var(--bg));}
-.force-tag{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
-.force-mv{font-size:19px;font-weight:900;color:#fff;margin-bottom:14px;}
+.fb{border-radius:var(--r);padding:14px;margin-bottom:10px;border:1px solid;background:linear-gradient(135deg,#1a0810,var(--bg));}
+.fb-tag{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.fb-mv{font-size:18px;font-weight:900;color:#fff;margin-bottom:12px;}
 .series-block{background:var(--bg3);border-radius:var(--rs);padding:12px;margin-bottom:10px;}
-.series-hdr{font-size:10px;color:var(--text2);letter-spacing:1px;margin-bottom:10px;}
-.srow{display:grid;grid-template-columns:70px 1fr 80px;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);}
+.srow{display:grid;grid-template-columns:80px 1fr 80px;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid var(--border);}
 .srow:last-child{border-bottom:none;}
 .slabel{font-size:12px;font-weight:700;}
 .sdesc{font-size:11px;color:var(--text2);}
 .skg{font-size:15px;font-weight:700;text-align:right;}
-.note{background:rgba(233,69,96,0.08);border:1px solid rgba(233,69,96,0.25);border-radius:var(--rs);padding:9px 11px;font-size:11px;color:var(--accent);line-height:1.5;}
-/* SUPERSET BLOCKS */
-.ss-block{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:13px;margin-bottom:10px;}
-.ss-label{font-size:10px;font-weight:700;color:var(--text2);letter-spacing:1px;margin-bottom:10px;}
-.ex-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--border);}
+.cluster-box{background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.25);border-radius:var(--rs);padding:9px 11px;font-size:11px;color:var(--gold);line-height:1.6;margin-bottom:8px;}
+.note-box{background:rgba(233,69,96,0.08);border:1px solid rgba(233,69,96,0.25);border-radius:var(--rs);padding:9px 11px;font-size:11px;color:var(--accent);line-height:1.5;}
+/* HYP */
+.hyp{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:13px;margin-bottom:10px;}
+.hyp-title{font-size:10px;font-weight:700;color:var(--text2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;}
+.ss-label{font-size:10px;font-weight:700;color:var(--text2);letter-spacing:1px;margin-bottom:8px;margin-top:4px;}
+.ex-row{display:flex;justify-content:space-between;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--border);}
 .ex-row:last-child{border-bottom:none;}
 .ex-left{flex:1;}
-.ex-id{font-size:10px;font-weight:700;color:var(--text2);margin-bottom:2px;}
+.ex-id{font-size:10px;font-weight:700;color:var(--text2);margin-bottom:1px;}
 .ex-name{font-size:13px;font-weight:600;margin-bottom:2px;}
 .ex-detail{font-size:11px;color:var(--text2);line-height:1.4;}
-.ex-sets{font-size:13px;font-weight:700;color:var(--green);white-space:nowrap;margin-left:10px;padding-top:14px;}
-.ex-sets-arm{color:var(--gold);}
-.ex-sets-more{color:var(--purple);}
+.ex-right{text-align:right;flex-shrink:0;margin-left:10px;}
+.ex-sets{font-size:13px;font-weight:700;}
+.ex-reps{font-size:10px;color:var(--text2);}
+.mbadge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:9px;font-weight:700;margin-top:4px;}
+.m-rp{background:rgba(74,222,128,0.15);color:var(--green);}
+.m-drp{background:rgba(255,107,157,0.15);color:#ff6b9d;}
+.m-myo{background:rgba(192,132,252,0.15);color:var(--purple);}
+.m-cluster{background:rgba(245,166,35,0.15);color:var(--gold);}
 .ib{background:var(--bg3);border-radius:var(--rs);padding:11px;font-size:11px;color:var(--text2);line-height:1.6;margin-bottom:10px;}
-/* PROGRESSION */
-.prog-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:10px;}
-.prog-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;}
-.prog-row:last-child{border-bottom:none;}
 /* TOP SET */
 .mv-sel{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;}
 .mv-btn{flex:1;min-width:60px;padding:9px 4px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);color:var(--text2);font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;text-align:center;}
@@ -64,29 +66,16 @@ body{display:flex;flex-direction:column;max-width:480px;margin:0 auto;}
 .result-box{border-radius:var(--r);padding:14px;text-align:center;border:1px solid;margin-bottom:12px;}
 .hist-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);}
 .hist-row:last-child{border-bottom:none;}
-.badge-up{background:rgba(74,222,128,0.15);color:var(--green);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;}
-.badge-dn{background:rgba(248,113,113,0.15);color:var(--red);padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;}
+.badge-up{background:rgba(74,222,128,0.15);color:var(--green);padding:2px 8px;border-radius:20px;font-size:11px;}
+.badge-dn{background:rgba(248,113,113,0.15);color:var(--red);padding:2px 8px;border-radius:20px;font-size:11px;}
 .btn-del{background:none;border:none;color:var(--red);font-size:16px;cursor:pointer;padding:2px 5px;}
 .chart-wrap{width:100%;height:160px;position:relative;margin:8px 0;}
-/* PROGRESSION PAGE */
-.phase-row{border-radius:var(--rs);padding:11px;margin-bottom:8px;border:1px solid;}
-/* PERSO */
-.perso-day{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:10px;overflow:hidden;}
-.perso-hdr{padding:12px 14px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
-.perso-body{display:none;padding:0 14px 14px;}
-.perso-body.open{display:block;}
-.perso-ex-row{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border);}
-.perso-ex-row:last-child{border-bottom:none;}
-.perso-input{flex:1;background:var(--bg3);border:1px solid var(--border);border-radius:var(--rs);padding:8px 10px;color:var(--text);font-size:13px;font-family:inherit;}
-.btn-add-ex{width:100%;padding:9px;background:none;border:1px dashed var(--border);border-radius:var(--rs);color:var(--text2);font-size:12px;cursor:pointer;font-family:inherit;margin-top:8px;}
-.btn-del-ex{background:none;border:none;color:var(--red);font-size:16px;cursor:pointer;padding:2px 4px;}
-.btn-reset{background:none;border:1px solid rgba(248,113,113,0.3);color:var(--red);border-radius:var(--rs);padding:5px 10px;font-size:10px;cursor:pointer;font-family:inherit;}
-.btn-p{width:100%;padding:13px;background:var(--accent);color:#fff;border:none;border-radius:var(--r);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:8px;}
-.btn-g{width:100%;padding:13px;background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;}
 .btn-s{width:100%;padding:12px;background:var(--accent);color:#fff;border:none;border-radius:var(--rs);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:7px;}
 .rm-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:7px;}
 .rmf label{font-size:9px;color:var(--text2);display:block;text-align:center;margin-bottom:3px;}
 .rmf input{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:9px 5px;color:var(--text);font-size:15px;text-align:center;width:100%;font-family:inherit;}
+.btn-p{width:100%;padding:13px;background:var(--accent);color:#fff;border:none;border-radius:var(--r);font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:8px;}
+.btn-g{width:100%;padding:13px;background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:var(--r);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:9px 20px;border-radius:25px;font-size:13px;font-weight:600;opacity:0;transition:opacity 0.25s;pointer-events:none;z-index:999;}
 .toast.show{opacity:1;}
 </style>
@@ -98,29 +87,26 @@ body{display:flex;flex-direction:column;max-width:480px;margin:0 auto;}
 <nav class="nav">
   <button class="nb active" onclick="SP('prog')" id="nav-prog"><span class="ni">💪</span><span>Programme</span></button>
   <button class="nb" onclick="SP('topset')" id="nav-topset"><span class="ni">🎯</span><span>Top Set</span></button>
-  <button class="nb" onclick="SP('progr')" id="nav-progr"><span class="ni">📈</span><span>Progression</span></button>
-  <button class="nb" onclick="SP('forme')" id="nav-forme"><span class="ni">⚡</span><span>Forme</span></button>
-  <button class="nb" onclick="SP('perso')" id="nav-perso"><span class="ni">✏️</span><span>Mon Prog</span></button>
+  <button class="nb" onclick="SP('info')" id="nav-info"><span class="ni">📋</span><span>Progression</span></button>
+  <button class="nb" onclick="SP('backup')" id="nav-backup"><span class="ni">💾</span><span>Backup</span></button>
 </nav>
 <div class="pg active" id="pg-prog"></div>
 <div class="pg" id="pg-topset"></div>
-<div class="pg" id="pg-progr"></div>
-<div class="pg" id="pg-forme"></div>
-<div class="pg" id="pg-perso"></div>
+<div class="pg" id="pg-info"></div>
+<div class="pg" id="pg-backup"></div>
 <div class="toast" id="toast"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-var RM = JSON.parse(localStorage.getItem('btp_rm4')||'null')||{bench:101,squat:105,sdt:145,ohp:60};
-var TS = JSON.parse(localStorage.getItem('btp_ts4')||'[]');
+var RM = JSON.parse(localStorage.getItem('btp_rm6')||'null')||{bench:100,squat:110,sdt:145,ohp:55};
+var TS = JSON.parse(localStorage.getItem('btp_ts6')||'[]');
 var curMv = 'sdt';
 var perfChart = null;
 var cd = 0;
-var persoOpen = {};
 
-function svRM(){localStorage.setItem('btp_rm4',JSON.stringify(RM));}
-function svTS(){localStorage.setItem('btp_ts4',JSON.stringify(TS));}
-function ldCD(){try{var r=localStorage.getItem('btp_cd4');if(r)cd=parseInt(r);}catch(e){}}
-function svCD(){localStorage.setItem('btp_cd4',String(cd));}
+function svRM(){localStorage.setItem('btp_rm6',JSON.stringify(RM));}
+function svTS(){localStorage.setItem('btp_ts6',JSON.stringify(TS));}
+function ldCD(){try{var r=localStorage.getItem('btp_cd6');if(r)cd=parseInt(r);}catch(e){}}
+function svCD(){localStorage.setItem('btp_cd6',String(cd));}
 
 var MV_LABELS={bench:'BENCH',squat:'SQUAT',sdt:'SDT',ohp:'MILITAIRE'};
 var MV_COLORS={bench:'#f5a623',squat:'#7bed9f',sdt:'#00b4d8',ohp:'#e94560'};
@@ -128,96 +114,99 @@ var RPE_F={10:1,9.5:1.022,9:1.044,8.5:1.067,8:1.091,7.5:1.116,7:1.143,6.5:1.171,
 
 function calc1RM(c,r,rpe){return Math.round(c*(1+r/30)*(RPE_F[parseFloat(rpe)]||1));}
 function kgFrom(rm,pct){return Math.round(rm*pct/100/2.5)*2.5;}
-function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2200);}
 function today(){return new Date().toISOString().split('T')[0];}
 function fd(s){return new Date(s+'T12:00:00').toLocaleDateString('fr-FR',{day:'numeric',month:'short'});}
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2200);}
 
-// DAYS DATA
 var DAYS = [
   {
-    id:0, short:"UPPER 1", label:"UPPER 1", accent:"#e94560",
-    force:{mv:"BENCH BARRE", rm:"bench", note:"Prise competition. Pieds au sol. Toucher poitrine. Top set puis -5% et -10% pour les back-off."},
+    id:0, short:"UPPER 1", label:"UPPER 1 — BENCH", accent:"#e94560",
+    force:{mv:"BENCH BARRE", rm:"bench",
+      note:"Prise competition. Toucher poitrine. Pieds au sol."},
     supersets:[
       {label:"SUPERSET 1B + 1C",exs:[
-        {id:"1B",n:"Chin-Up",d:"Max reps BW · RIR 1-2",sets:"2×max"},
-        {id:"1C",n:"Band Pull Apart",d:"15-20 reps · tension constante",sets:"2×15-20"},
+        {id:"1B",n:"Chin-Up",        d:"Max reps BW · RIR 1-2",              sets:"2", reps:"max"},
+        {id:"1C",n:"Band Pull Apart",d:"15-20 reps · tension constante",     sets:"2", reps:"15-20"},
       ]},
       {label:"SUPERSET 2A + 2B",exs:[
-        {id:"2A",n:"DB Incline Press",d:"8-10 reps · 15° · amplitude complete",sets:"2×8-10"},
-        {id:"2B",n:"Wide Grip Pull-Down",d:"8-10 reps · tirage large",sets:"2×8-10"},
+        {id:"2A",n:"DB Incline Press",      d:"8-10 reps · 15° · amplitude complete",sets:"2",reps:"8-10"},
+        {id:"2B",n:"Wide Grip Pull-Down",   d:"8-10 reps · tirage large",           sets:"2",reps:"8-10"},
       ]},
       {label:"SUPERSET 3A + 3B",exs:[
-        {id:"3A",n:"Weighted Dips",d:"8-10 reps · lestes · amplitude complete",sets:"2×8-10"},
-        {id:"3B",n:"Curl incline halteres",d:"8-10 reps/bras · Double Contraction",sets:"3×8-10",arm:true},
+        {id:"3A",n:"Weighted Dips",         d:"8-10 reps · lestes · amplitude complete",sets:"2",reps:"8-10"},
+        {id:"3B",n:"Curl incline halteres", d:"8-10 reps/bras · Double Contraction",   sets:"3",reps:"8-10",arm:true},
       ]},
       {label:"SUPERSET 4A + 4B + 4C",exs:[
-        {id:"4A",n:"DB Rear Raise",d:"12-15 reps · deltoide posterieur",sets:"2×12-15"},
-        {id:"4B",n:"DB Lateral Raise",d:"10-15 reps · deltoide moyen",sets:"2×10-15"},
-        {id:"4C",n:"DB Front Raise",d:"8-10 reps/bras · deltoide anterieur",sets:"2×8-10"},
+        {id:"4A",n:"DB Rear Raise",      d:"12-15 reps · deltoide posterieur",sets:"2",reps:"12-15"},
+        {id:"4B",n:"DB Lateral Raise",   d:"10-15 reps · deltoide moyen",    sets:"2",reps:"10-15"},
+        {id:"4C",n:"Elev. lat. poulie basse",d:"10-15 reps/bras",            sets:"2",reps:"10-15"},
       ]},
     ]
   },
   {
-    id:1, short:"UPPER 2", label:"UPPER 2", accent:"#f5a623",
-    force:{mv:"MILITAIRE ASSIS BARRE", rm:"ohp", note:"Assis strict. Gainage. Barre au menton. Top set puis -5% et -10% pour les back-off."},
+    id:1, short:"UPPER 2", label:"UPPER 2 — MILITAIRE", accent:"#f5a623",
+    force:{mv:"MILITAIRE ASSIS BARRE", rm:"ohp",
+      note:"Assis strict. Gainage. Barre au menton."},
     supersets:[
       {label:"SUPERSET 1B + 1C",exs:[
-        {id:"1B",n:"Chin-Up",d:"Max reps BW · RIR 1-2",sets:"2×max"},
-        {id:"1C",n:"Band Pull Apart",d:"15-20 reps",sets:"2×15-20"},
+        {id:"1B",n:"Chin-Up",        d:"Max reps BW · RIR 1-2",         sets:"2",reps:"max"},
+        {id:"1C",n:"Band Pull Apart",d:"15-20 reps",                    sets:"2",reps:"15-20"},
       ]},
       {label:"SUPERSET 2A + 2B",exs:[
-        {id:"2A",n:"Close Grip Bench Press",d:"6-8 reps · prise serree · long chef triceps",sets:"2×6-8"},
-        {id:"2B",n:"Tirage horizontal poulie basse",d:"8-15 reps · 2 bras · pause 1s en haut",sets:"2×8-15"},
+        {id:"2A",n:"Bench Pause Barre",          d:"6-8 reps · pause 1-2s poitrine · prise competition",sets:"2",reps:"6-8"},
+        {id:"2B",n:"Tirage horizontal poulie basse",d:"8-15 reps · 2 bras · pause 1s en haut",         sets:"2",reps:"8-15"},
       ]},
-      {label:"SUPERSET 3A + 3B — BRAS",exs:[
-        {id:"3A",n:"Cable Extension",d:"8-12 reps · triceps isolation",sets:"4×8-12",more:true},
-        {id:"3B",n:"Cable Curl",d:"8-10 reps · biceps isolation",sets:"4×8-10",more:true},
+      {label:"SUPERSET 3A + 3B — BRAS · 3 series",exs:[
+        {id:"3A",n:"Cable Extension",d:"8-12 reps · triceps isolation",sets:"3",reps:"8-12",arm:true},
+        {id:"3B",n:"Cable Curl",     d:"8-10 reps · biceps isolation", sets:"3",reps:"8-10",arm:true},
       ]},
-      {label:"SUPERSET 4A + 4B",exs:[
-        {id:"4A",n:"Reverse Pec Deck",d:"10-15 reps · deltoide posterieur",sets:"2×10-15"},
-        {id:"4B",n:"DB Front Raise",d:"8-10 reps/bras",sets:"2×8-10"},
+      {label:"SUPERSET 4A + 4B — Myo Reps derniere serie",exs:[
+        {id:"4A",n:"Reverse Pec Deck",        d:"10-15 reps · deltoide posterieur",sets:"2",reps:"10-15",myo:true},
+        {id:"4B",n:"Elev. lat. poulie basse", d:"10-15 reps/bras",                 sets:"2",reps:"10-15",myo:true},
       ]},
     ]
   },
   {
-    id:2, short:"LOWER 1", label:"LOWER 1", accent:"#7bed9f",
-    force:{mv:"SQUAT BARRE HAUTE", rm:"squat", note:"Profondeur competition. Touch & go sur les reps volume. Top set puis -5% et -10% pour les back-off."},
+    id:2, short:"LOWER 1", label:"LOWER 1 — SQUAT", accent:"#7bed9f",
+    force:{mv:"SQUAT BARRE HAUTE", rm:"squat",
+      note:"Profondeur competition. Touch & go sur reps volume."},
     supersets:[
       {label:"1B — MOLLETS",exs:[
-        {id:"1B",n:"Tibialis Raises",d:"15-30 reps · contre mur · cheville flexion",sets:"2×15-30"},
+        {id:"1B",n:"Tibialis Raises",d:"15-30 reps · contre mur",sets:"2",reps:"15-30"},
       ]},
       {label:"SUPERSET 2A + 2B",exs:[
-        {id:"2A",n:"Fentes bulgares halteres",d:"8-10 reps/jambe · amplitude complete",sets:"2×8-10"},
-        {id:"2B",n:"Calves Raises",d:"15-20 reps · tempo 1-1-1-1",sets:"2×15-20"},
+        {id:"2A",n:"Fentes bulgares halteres",d:"8-10 reps/jambe · amplitude complete",sets:"2",reps:"8-10"},
+        {id:"2B",n:"Calves Raises",           d:"15-20 reps · tempo 1-1-1-1",          sets:"2",reps:"15-20"},
       ]},
-      {label:"SUPERSET 3A + 3B",exs:[
-        {id:"3A",n:"Leg Extension",d:"10-15 reps · pause 1s en haut",sets:"2×10-15"},
-        {id:"3B",n:"Leg Curl",d:"8-10 reps · excentrique 3s",sets:"2×8-10"},
+      {label:"SUPERSET 3A + 3B — Rest Pause",exs:[
+        {id:"3A",n:"Leg Extension",d:"10-15 reps · pause 1s en haut · Rest Pause",sets:"2",reps:"10-15",rp:true},
+        {id:"3B",n:"Leg Curl",     d:"8-10 reps · excentrique 3s · Rest Pause",   sets:"2",reps:"8-10",rp:true},
       ]},
       {label:"SUPERSET 4A + 4B — ABDOS",exs:[
-        {id:"4A",n:"Back Extension leste",d:"10-15 reps · charge sur poitrine",sets:"2×10-15"},
-        {id:"4B",n:"Ab wheel",d:"Max reps · genoux au sol",sets:"4×max",more:true},
+        {id:"4A",n:"Back Extension leste",d:"10-15 reps · charge sur poitrine",sets:"2",reps:"10-15"},
+        {id:"4B",n:"Ab wheel",            d:"Max reps · genoux au sol",          sets:"4",reps:"max"},
       ]},
     ]
   },
   {
-    id:3, short:"LOWER 2", label:"LOWER 2", accent:"#00b4d8",
-    force:{mv:"SDT CONVENTIONNEL", rm:"sdt", note:"Dos neutre. Sangles. Touch & go sur les reps volume. Top set puis -5% et -10% pour les back-off."},
+    id:3, short:"LOWER 2", label:"LOWER 2 — SDT", accent:"#00b4d8",
+    force:{mv:"SDT CONVENTIONNEL", rm:"sdt",
+      note:"Dos neutre. Sangles. Touch & go sur reps volume."},
     supersets:[
-      {label:"SUPERSET 1B + MOLLETS",exs:[
-        {id:"1B",n:"DB Calves Raises",d:"15-20 reps/jambe · tempo 1-1-1-1",sets:"2×15-20"},
+      {label:"1B — MOLLETS",exs:[
+        {id:"1B",n:"DB Calves Raises",d:"15-20 reps/jambe · tempo 1-1-1-1",sets:"2",reps:"15-20"},
       ]},
-      {label:"SUPERSET 2A + 2B",exs:[
-        {id:"2A",n:"Squat cyclist",d:"5-8 reps · talons sureleves · quad pur",sets:"2×5-8"},
-        {id:"2B",n:"Seated Calves Raises",d:"15-20 reps · tempo 1-1-1-1",sets:"2×15-20"},
+      {label:"SUPERSET 2A + 2B — Rest Pause sur Cyclist",exs:[
+        {id:"2A",n:"Cyclist Squat",       d:"5-8 reps · talons sureleves · quad pur · Rest Pause",sets:"2",reps:"5-8",rp:true},
+        {id:"2B",n:"Seated Calves Raises",d:"15-20 reps · tempo 1-1-1-1",                         sets:"2",reps:"15-20"},
       ]},
       {label:"SUPERSET 3A + 3B — DOS HAUT",exs:[
-        {id:"3A",n:"BB Shrug",d:"5 reps lourd · pause 1s en haut",sets:"2×5"},
-        {id:"3B",n:"Rowing Hammer focus trapezes",d:"8-10 reps · pause 1s en haut",sets:"2×8-10"},
+        {id:"3A",n:"BB Shrug",                    d:"5 reps lourd · pause 1s en haut",     sets:"2",reps:"5"},
+        {id:"3B",n:"Rowing Hammer focus trapezes",d:"8-10 reps · pause 1s en haut",        sets:"2",reps:"8-10"},
       ]},
       {label:"SUPERSET 4A + 4B — ABDOS",exs:[
-        {id:"4A",n:"Back Extension dos arrondi",d:"15-20 reps · sans charge · lombaires",sets:"2×15-20"},
-        {id:"4B",n:"Toes to Bar",d:"Max reps BW",sets:"4×max",more:true},
+        {id:"4A",n:"Back Extension dos arrondi",d:"15-20 reps · lombaires",sets:"2",reps:"15-20"},
+        {id:"4B",n:"Toes to Bar",               d:"Max reps BW",           sets:"4",reps:"max"},
       ]},
     ]
   },
@@ -230,79 +219,64 @@ function SP(p){
   document.getElementById('nav-'+p).classList.add('active');
   if(p==='prog')renderProg();
   if(p==='topset')renderTS();
-  if(p==='progr')renderProgr();
-  if(p==='forme')renderForme();
-  if(p==='perso')renderPerso();
+  if(p==='info')renderInfo();
+  if(p==='backup')renderBackup();
 }
 
 function selDay(i){cd=i;svCD();renderProg();}
 
-function getCustomDays(){try{var r=localStorage.getItem('btp_custom4');return r?JSON.parse(r):{};} catch(e){return{};}}
-function saveCustomDays(d){localStorage.setItem('btp_custom4',JSON.stringify(d));}
-
-function getEffDay(di){
-  var custom=getCustomDays();
-  if(!custom[di])return DAYS[di];
-  var day=JSON.parse(JSON.stringify(DAYS[di]));
-  // Apply custom supersets if any
-  if(custom[di].supersets)day.supersets=custom[di].supersets;
-  return day;
-}
-
-// ── PROGRAMME ──
 function renderProg(){
   var el=document.getElementById('pg-prog');
-  var day=getEffDay(cd);
+  var day=DAYS[cd];
   var rm=day.force.rm?RM[day.force.rm]:null;
-  var topKg=rm?kgFrom(rm,70):null;
-  var bo1Kg=topKg?kgFrom(topKg,0.95):null;
-  var bo2Kg=topKg?kgFrom(topKg,0.90):null;
+  var topKg=rm?kgFrom(rm,78):null;
+  var bo1Kg=topKg?(topKg-5):null;
+  var bo2Kg=topKg?(topKg-10):null;
 
   var html='<div class="days">'
     +DAYS.map(function(d,i){
-      return '<button class="db" onclick="selDay('+i+')" style="'
-        +(i===cd?'background:'+d.accent+';border-color:'+d.accent+';color:#000':'')+'">'+d.short+'</button>';
+      return '<button class="db" onclick="selDay('+i+')" style="'+(i===cd?'background:'+d.accent+';border-color:'+d.accent+';color:#000':'')+'">'+d.short+'</button>';
     }).join('')+'</div>';
 
-  // Force block
-  html+='<div class="force-card" style="border-color:'+day.accent+'">'
-    +'<div class="force-tag" style="color:'+day.accent+'">BLOC FORCE</div>'
-    +'<div class="force-mv">'+day.force.mv+'</div>'
+  // FORCE
+  html+='<div class="fb" style="border-color:'+day.accent+'">'
+    +'<div class="fb-tag" style="color:'+day.accent+'">BLOC FORCE — 5 REPS · ~78% 1RM</div>'
+    +'<div class="fb-mv">'+day.force.mv+'</div>'
     +'<div class="series-block">'
-    +'<div class="series-hdr">TOP SET + 2 BACK-OFF'+(rm?' · BASE '+rm+' kg · DEPART ~70% = '+(topKg||'?')+' kg':'')+'</div>'
-    +'<div class="srow">'
-    +'<span class="slabel" style="color:'+day.accent+'">TOP SET</span>'
-    +'<span class="sdesc">+2.5 ou 5kg vs semaine precedente</span>'
-    +'<span class="skg" style="color:'+day.accent+'">'+(topKg?'~'+topKg+' kg':'—')+'</span>'
+    +'<div class="srow"><span class="slabel" style="color:'+day.accent+'">TOP SET</span>'
+    +'<span class="sdesc">5 reps · +2.5 ou 5kg vs semaine precedente</span>'
+    +'<span class="skg" style="color:'+day.accent+'">'+(topKg?'~'+topKg+' kg':'—')+'</span></div>'
+    +'<div class="srow"><span class="slabel" style="color:var(--text2)">BACK-OFF 1</span>'
+    +'<span class="sdesc">-5kg du top set · 5 reps</span>'
+    +'<span class="skg" style="color:var(--text2)">'+(bo1Kg?bo1Kg+' kg':'—')+'</span></div>'
+    +'<div class="srow"><span class="slabel" style="color:var(--text2)">BACK-OFF 2</span>'
+    +'<span class="sdesc">-10kg du top set · 5 reps</span>'
+    +'<span class="skg" style="color:var(--text2)">'+(bo2Kg?bo2Kg+' kg':'—')+'</span></div>'
     +'</div>'
-    +'<div class="srow">'
-    +'<span class="slabel" style="color:var(--text2)">BACK-OFF 1</span>'
-    +'<span class="sdesc">~95% du top set</span>'
-    +'<span class="skg" style="color:var(--text2)">'+(bo1Kg?'~'+bo1Kg+' kg':'—')+'</span>'
-    +'</div>'
-    +'<div class="srow">'
-    +'<span class="slabel" style="color:var(--text2)">BACK-OFF 2</span>'
-    +'<span class="sdesc">~90% du top set</span>'
-    +'<span class="skg" style="color:var(--text2)">'+(bo2Kg?'~'+bo2Kg+' kg':'—')+'</span>'
-    +'</div></div>'
-    +'<div class="note">'+day.force.note+'</div></div>';
+    +'<div class="cluster-box">Si moins de 5 reps propres → Cluster : 1 rep · pause 20-30s · repete jusqu\'a 5 reps total · meme charge · augmente quand meme semaine suivante<br>Si cluster echoue (max 5 singles) → Deload + nouveau cycle</div>'
+    +'<div class="note-box">'+day.force.note+'</div></div>';
 
-  // Supersets
+  // HYP
+  html+='<div class="hyp"><div class="hyp-title">HYPERTROPHIE</div>';
   day.supersets.forEach(function(ss){
-    html+='<div class="ss-block"><div class="ss-label">'+ss.label+'</div>';
+    html+='<div class="ss-label">'+ss.label+'</div>';
     ss.exs.forEach(function(ex){
-      var setColor=ex.more?'ex-sets-more':ex.arm?'ex-sets-arm':'';
+      var setsCol=parseInt(ex.sets)>=4?'var(--purple)':ex.arm?'var(--gold)':'var(--green)';
       html+='<div class="ex-row">'
         +'<div class="ex-left">'
         +'<div class="ex-id">'+ex.id+'</div>'
         +'<div class="ex-name">'+ex.n+'</div>'
         +'<div class="ex-detail">'+ex.d+'</div>'
+        +(ex.rp?'<span class="mbadge m-rp">Rest Pause</span>':'')
+        +(ex.myo?'<span class="mbadge m-myo">Myo Reps derniere serie</span>':'')
         +'</div>'
-        +'<div class="ex-sets '+setColor+'">'+ex.sets+'</div>'
-        +'</div>';
+        +'<div class="ex-right">'
+        +'<div class="ex-sets" style="color:'+setsCol+'">'+ex.sets+'s</div>'
+        +'<div class="ex-reps">'+ex.reps+' reps</div>'
+        +'</div></div>';
     });
-    html+='</div>';
   });
+  html+='</div>';
 
   // RM update
   html+='<div style="background:var(--bg3);border-radius:var(--rs);padding:11px;margin-top:4px">'
@@ -326,7 +300,7 @@ function updRM(){
   svRM();toast('1RM mis a jour');renderProg();
 }
 
-// ── TOP SET ──
+// TOP SET
 function renderTS(){
   var el=document.getElementById('pg-topset');
   var hist=TS.filter(function(t){return t.mv===curMv;}).sort(function(a,b){return a.date.localeCompare(b.date);});
@@ -335,8 +309,7 @@ function renderTS(){
   var html='<div class="card"><div class="ct">Enregistrer un top set</div>'
     +'<div class="mv-sel">'
     +Object.keys(MV_LABELS).map(function(mv){
-      return '<button class="mv-btn" onclick="selMV(\''+mv+'\')" style="'
-        +(mv===curMv?'background:'+MV_COLORS[mv]+';border-color:'+MV_COLORS[mv]+';color:#000':'')+'">'+MV_LABELS[mv]+'</button>';
+      return '<button class="mv-btn" onclick="selMV(\''+mv+'\')" style="'+(mv===curMv?'background:'+MV_COLORS[mv]+';border-color:'+MV_COLORS[mv]+';color:#000':'')+'">'+MV_LABELS[mv]+'</button>';
     }).join('')+'</div>'
     +'<div class="ts-grid">'
     +'<div class="tf"><label>CHARGE (kg)</label><input type="number" inputmode="decimal" step="0.5" id="ts-c" placeholder="---"/></div>'
@@ -346,7 +319,6 @@ function renderTS(){
     +'</select></div></div>'
     +'<button class="btn-calc" onclick="calcTS()">Calculer et sauvegarder</button>'
     +'<div id="ts-result"></div></div>'
-
     +'<div class="card"><div class="ct">1RM estimes</div>'
     +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">'
     +Object.keys(MV_LABELS).map(function(mv){
@@ -359,11 +331,7 @@ function renderTS(){
 
   if(hist.length>1){
     html+='<div class="card"><div class="ct">Courbe — '+MV_LABELS[curMv]+'</div>'
-      +'<div class="chart-wrap"><canvas id="pc"></canvas></div>'
-      +'<div style="display:flex;gap:10px;font-size:10px;flex-wrap:wrap;margin-top:6px">'
-      +'<span style="color:#4ade80">■ RPE &lt;7.5</span>'
-      +'<span style="color:#f5a623">■ RPE 7.5-8.5</span>'
-      +'<span style="color:#f87171">■ RPE &gt;8.5</span></div></div>';
+      +'<div class="chart-wrap"><canvas id="pc"></canvas></div></div>';
   }
 
   if(hist.length){
@@ -401,14 +369,9 @@ function renderTS(){
           pointRadius:6,tension:0.3,borderWidth:2
         }]},
         options:{responsive:true,maintainAspectRatio:false,
-          plugins:{legend:{display:false},tooltip:{callbacks:{
-            label:function(ctx){return ctx.parsed.y+' kg';},
-            afterLabel:function(ctx){var t=hist[ctx.dataIndex];return t.charge+'kg x'+t.reps+' @ RPE'+t.rpe;}
-          }}},
-          scales:{
-            x:{ticks:{font:{size:10},maxRotation:40},grid:{display:false}},
-            y:{ticks:{font:{size:11}},grid:{color:'rgba(128,128,128,0.1)'}}
-          }
+          plugins:{legend:{display:false}},
+          scales:{x:{ticks:{font:{size:10},maxRotation:40},grid:{display:false}},
+                  y:{ticks:{font:{size:11}},grid:{color:'rgba(128,128,128,0.1)'}}}
         }
       });
     },100);
@@ -443,46 +406,46 @@ function delTS(id){
   TS=TS.filter(function(t){return t.id!==id;});
   ['bench','squat','sdt','ohp'].forEach(function(mv){
     var e=TS.filter(function(t){return t.mv===mv;}).sort(function(a,b){return b.date.localeCompare(a.date);});
-    var def={bench:101,squat:105,sdt:145,ohp:60};
+    var def={bench:100,squat:110,sdt:145,ohp:55};
     RM[mv]=e.length?e[0].rm1:def[mv];
   });
   svTS();svRM();toast('Supprime');renderTS();
 }
 
-// ── PROGRESSION ──
-function renderProgr(){
-  var el=document.getElementById('pg-progr');
-  var html='<div class="card"><div class="ct">Systeme de progression</div>'
-    +'<div class="ib">Progression lineaire simple. Tu augmentes la charge chaque semaine. Quand tu bloques, tu passes en cluster sets puis tu fais un deload.</div>'
-
-    +'<div style="margin-bottom:12px">'
+// INFO
+function renderInfo(){
+  var el=document.getElementById('pg-info');
+  var html='<div class="card"><div class="ct">Logique de progression force</div>'
+    +'<div style="font-size:11px;color:var(--text2);margin-bottom:14px">Depart a ~78% 1RM · 5 reps · 2 back-off</div>'
     +[
-      {mv:'Bench + Militaire',inc:'+ 2.5 kg / semaine',c:'#f5a623'},
-      {mv:'Squat + SDT',inc:'+ 5 kg / semaine',c:'#7bed9f'},
+      {e:'✅',t:'5 reps propres',d:'Augmente la semaine suivante : +2.5kg bench/militaire · +5kg squat/SDT',c:'var(--green)'},
+      {e:'⚡',t:'Moins de 5 reps → Cluster',d:'1 rep · pause 20-30s · repete jusqu\'a 5 reps total · meme charge · augmente quand meme semaine suivante',c:'var(--gold)'},
+      {e:'❌',t:'Cluster echoue',d:'Tu n\'atteins pas 5 reps meme en cluster (max 5 singles) → Deload + nouveau cycle',c:'var(--red)'},
+      {e:'🔄',t:'Deload',d:'1 semaine a 60% · technique uniquement · puis nouveau cycle recalibre sur 1RM Top Set',c:'var(--purple)'},
     ].map(function(x){
-      return '<div class="phase-row" style="background:'+x.c+'12;border-color:'+x.c+'40;display:flex;justify-content:space-between;align-items:center">'
-        +'<span style="font-size:13px;font-weight:600">'+x.mv+'</span>'
-        +'<span style="font-size:14px;font-weight:700;color:'+x.c+'">'+x.inc+'</span></div>';
-    }).join('')+'</div>'
-
-    +'<div style="font-size:10px;font-weight:700;color:var(--text2);letter-spacing:1px;margin-bottom:10px">DEROULEMENT DU CYCLE</div>'
-    +[
-      {e:'🟢',t:'Semaine normale',d:'Tu fais le top set avec la charge prevue. Si tu fais 3+ reps propres → tu augmentes la semaine prochaine.'},
-      {e:'🟡',t:'Cluster sets',d:'Tu ne peux plus faire 3 reps propres sur le top set. Passe en cluster : 2-2-1 avec 15-20s de repos intra-serie. Continue 1-2 semaines.'},
-      {e:'🔴',t:'Deload',d:'Reduis les charges de 40-50% pendant 1 semaine. Technique uniquement. Recuperation complete du SN.'},
-      {e:'🔁',t:'Nouveau cycle',d:'Repars de 70% 1RM recalibre via le Top Set. Le nouveau 1RM estimé est la base du prochain cycle.'},
-    ].map(function(x){
-      return '<div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)">'
+      return '<div style="display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--border)">'
         +'<span style="font-size:22px;flex-shrink:0">'+x.e+'</span>'
-        +'<div><div style="font-size:13px;font-weight:600;margin-bottom:3px">'+x.t+'</div>'
+        +'<div><div style="font-size:13px;font-weight:600;color:'+x.c+';margin-bottom:3px">'+x.t+'</div>'
         +'<div style="font-size:11px;color:var(--text2);line-height:1.5">'+x.d+'</div></div></div>';
     }).join('')
     +'</div>'
 
-    +'<div class="card"><div class="ct">Charges actuelles estimees — depart 70%</div>'
+    +'<div class="card"><div class="ct">Methodes hypertrophie</div>'
+    +'<div class="ib">Uniquement sur les exercices marques. Sur les autres : series classiques jusqu\'a 2 reps de l\'echec.</div>'
+    +[
+      {badge:'Rest Pause',cls:'m-rp',d:'Serie normale jusqu\'a quasi-echec · pause 15s · max reps · pause 15s · max reps'},
+      {badge:'Myo Reps',cls:'m-myo',d:'Serie normale · mini-pauses de 3-5 respirations · 2-3 reps · repete 3-4 fois · sur la derniere serie uniquement'},
+    ].map(function(x){
+      return '<div style="padding:10px 0;border-bottom:1px solid var(--border)">'
+        +'<span class="mbadge '+x.cls+'" style="margin-bottom:6px;display:inline-block">'+x.badge+'</span>'
+        +'<div style="font-size:11px;color:var(--text2);line-height:1.5">'+x.d+'</div></div>';
+    }).join('')
+    +'</div>'
+
+    +'<div class="card"><div class="ct">1RM actuels</div>'
     +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px">'
-    +[['BENCH',RM.bench,'#f5a623'],[' SQUAT',RM.squat,'#7bed9f'],['SDT',RM.sdt,'#00b4d8'],['MILITAIRE',RM.ohp,'#e94560']].map(function(x){
-      var start=kgFrom(parseFloat(x[1]),70);
+    +[['BENCH',RM.bench,'#f5a623'],['SQUAT',RM.squat,'#7bed9f'],['SDT',RM.sdt,'#00b4d8'],['MILITAIRE',RM.ohp,'#e94560']].map(function(x){
+      var start=kgFrom(parseFloat(x[1]),78);
       return '<div style="text-align:center;background:var(--bg3);border-radius:var(--rs);padding:10px">'
         +'<div style="font-size:9px;color:var(--text2);margin-bottom:3px">'+x[0]+'</div>'
         +'<div style="font-size:18px;font-weight:700;color:'+x[2]+'">'+x[1]+' kg</div>'
@@ -494,87 +457,25 @@ function renderProgr(){
   el.innerHTML=html;
 }
 
-// ── FORME ──
-function renderForme(){
-  var el=document.getElementById('pg-forme');
-  var html='<div class="ib">Evalue ta forme sur ta derniere serie d\'echauffement — pas en arrivant a la salle.</div>'
-    +[
-      {e:'🟡',p:'70%',l:'JOURNEE DIFFICILE',c:'#facc15',
-       rows:[['TOP SET','Charge prevue -5% · meme reps'],['BACK-OFF','Reduits a 1 serie'],['HYPERTROPHIE','Fourchette haute reps · pas de methode'],['CARDIO','Zone 2 uniquement']],
-       tip:'Mieux vaut une seance incomplete que pas de seance du tout.'},
-      {e:'🟠',p:'90%',l:'BONNE FORME',c:'#fb923c',
-       rows:[['TOP SET','Charge prevue · reps normales'],['BACK-OFF','2 series normales'],['HYPERTROPHIE','Fourchette normale · supersets complets'],['CARDIO','Zone 2']],
-       tip:'Ta seance type. La majorite de tes entrainements.'},
-      {e:'🔴',p:'100%',l:'JOUR DE GRACE',c:'#f87171',
-       rows:[['TOP SET','Charge prevue ou +2.5kg si forme exceptionnelle'],['BACK-OFF','2 series · charges max'],['HYPERTROPHIE','Fourchette basse reps · methodes actives'],['CARDIO','Pas de cumul effort intense']],
-       tip:'Exploite ces jours. Reste discipline sur les charges.'},
-    ].map(function(f){
-      return '<div style="background:var(--bg2);border-radius:var(--r);overflow:hidden;margin-bottom:10px;border:1px solid '+f.c+'40">'
-        +'<div style="padding:12px;display:flex;align-items:center;gap:10px;background:'+f.c+'18">'
-        +'<span style="font-size:26px">'+f.e+'</span>'
-        +'<div><div style="font-weight:900;color:'+f.c+';font-size:15px">'+f.p+'</div>'
-        +'<div style="font-size:10px;color:'+f.c+';letter-spacing:1px;opacity:0.8">'+f.l+'</div></div></div>'
-        +'<div style="padding:12px">'
-        +f.rows.map(function(r){
-          return '<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border)">'
-            +'<span style="font-size:11px;color:var(--text2)">'+r[0]+'</span>'
-            +'<span style="font-size:12px;text-align:right;max-width:60%">'+r[1]+'</span></div>';
-        }).join('')
-        +'<div style="margin-top:8px;padding:9px;border-radius:var(--rs);font-size:11px;font-style:italic;background:'+f.c+'12;color:'+f.c+'">"'+f.tip+'"</div>'
-        +'</div></div>';
-    }).join('');
-
-  el.innerHTML=html;
-}
-
-// ── PERSO ──
-function renderPerso(){
-  var el=document.getElementById('pg-perso');
-  var html='<div class="ib">Personnalise tes exercices. Les modifications s\'appliquent sur cet appareil uniquement.</div>'
-    +DAYS.map(function(day,di){
-      var isOpen=persoOpen[di];
-      return '<div class="perso-day">'
-        +'<div class="perso-hdr" onclick="togglePerso('+di+')" style="border-left:3px solid '+day.accent+'">'
-        +'<div style="font-size:14px;font-weight:700;color:'+day.accent+'">'+day.label+'</div>'
-        +'<span style="color:var(--text2)">'+(isOpen?'▲':'▼')+'</span>'
-        +'</div>'
-        +'<div class="perso-body'+(isOpen?' open':'')+'">'
-        +day.supersets.map(function(ss,si){
-          return '<div style="margin-bottom:8px"><div style="font-size:10px;color:var(--text2);margin-bottom:4px;margin-top:8px">'+ss.label+'</div>'
-            +ss.exs.map(function(ex,ei){
-              return '<div class="perso-ex-row">'
-                +'<input class="perso-input" type="text" value="'+ex.n+'" onchange="updateEx('+di+','+si+','+ei+',this.value)"/>'
-                +'</div>';
-            }).join('')+'</div>';
-        }).join('')
-        +'</div></div>';
-    }).join('')
-    +'<div class="card"><div class="ct">Sauvegarde</div>'
+// BACKUP
+function renderBackup(){
+  var el=document.getElementById('pg-backup');
+  el.innerHTML='<div class="card"><div class="ct">Sauvegarde</div>'
     +'<div class="ib">Exporte tes donnees pour ne pas les perdre.</div>'
     +'<button class="btn-p" onclick="exportData()">Exporter mes donnees</button>'
     +'<button class="btn-g" onclick="importData()">Importer une sauvegarde</button>'
     +'</div>';
-  el.innerHTML=html;
-}
-
-function togglePerso(di){persoOpen[di]=!persoOpen[di];renderPerso();}
-
-function updateEx(di,si,ei,val){
-  var custom=getCustomDays();
-  if(!custom[di]){custom[di]={supersets:JSON.parse(JSON.stringify(DAYS[di].supersets))};}
-  if(!custom[di].supersets)custom[di].supersets=JSON.parse(JSON.stringify(DAYS[di].supersets));
-  custom[di].supersets[si].exs[ei].n=val;
-  saveCustomDays(custom);
 }
 
 function exportData(){
-  var data=JSON.stringify({rm:RM,ts:TS,custom:getCustomDays(),cd:cd},null,2);
+  var data=JSON.stringify({rm:RM,ts:TS,cd:cd},null,2);
   var blob=new Blob([data],{type:'application/json'});
   var url=URL.createObjectURL(blob);
   var a=document.createElement('a');
   a.href=url;a.download='bt_power_'+today()+'.json';
   a.click();URL.revokeObjectURL(url);toast('Exporte');
 }
+
 function importData(){
   var input=document.createElement('input');
   input.type='file';input.accept='.json';
@@ -586,7 +487,6 @@ function importData(){
         var p=JSON.parse(ev.target.result);
         if(!confirm('Restaurer ?'))return;
         if(p.rm)RM=p.rm;if(p.ts)TS=p.ts;
-        if(p.custom)saveCustomDays(p.custom);
         if(p.cd!==undefined)cd=p.cd;
         svRM();svTS();svCD();toast('Restaure');SP('prog');
       }catch(e){toast('Erreur');}
@@ -597,7 +497,7 @@ function importData(){
 }
 
 ldCD();
-renderProg();renderProgr();renderForme();renderPerso();
+renderProg();renderInfo();renderBackup();
 </script>
 </body>
 </html>
