@@ -229,7 +229,12 @@ function renderProg(){
   var el=document.getElementById('pg-prog');
   var day=DAYS[cd];
   var rm=day.force.rm?RM[day.force.rm]:null;
-  var topKg=rm?kgFrom(rm,78):null;
+  // Get last top set for this movement
+  var mvKey=day.force.rm;
+  var lastTS=TS.filter(function(t){return t.mv===mvKey;}).sort(function(a,b){return b.date.localeCompare(a.date);})[0];
+  var lastKg=lastTS?lastTS.charge:null;
+  var incr=(mvKey==='bench'||mvKey==='ohp')?2.5:5;
+  var topKg=lastKg?(lastKg+incr):(rm?kgFrom(rm,78):null);
   var bo1Kg=topKg?(topKg-5):null;
   var bo2Kg=topKg?(topKg-10):null;
 
@@ -244,8 +249,8 @@ function renderProg(){
     +'<div class="fb-mv">'+day.force.mv+'</div>'
     +'<div class="series-block">'
     +'<div class="srow"><span class="slabel" style="color:'+day.accent+'">TOP SET</span>'
-    +'<span class="sdesc">5 reps · +2.5 ou 5kg vs semaine precedente</span>'
-    +'<span class="skg" style="color:'+day.accent+'">'+(topKg?'~'+topKg+' kg':'—')+'</span></div>'
+    +'<span class="sdesc">5 reps'+(lastKg?' · derniere : '+lastKg+'kg':' · depart ~78%')+'</span>'
+    +'<span class="skg" style="color:'+day.accent+'">'+(topKg?topKg+' kg':'—')+'</span></div>'
     +'<div class="srow"><span class="slabel" style="color:var(--text2)">BACK-OFF 1</span>'
     +'<span class="sdesc">-5kg du top set · 5 reps</span>'
     +'<span class="skg" style="color:var(--text2)">'+(bo1Kg?bo1Kg+' kg':'—')+'</span></div>'
