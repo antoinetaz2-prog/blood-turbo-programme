@@ -311,6 +311,8 @@ function renderTS(){
     +Object.keys(MV_LABELS).map(function(mv){
       return '<button class="mv-btn" onclick="selMV(\''+mv+'\')" style="'+(mv===curMv?'background:'+MV_COLORS[mv]+';border-color:'+MV_COLORS[mv]+';color:#000':'')+'">'+MV_LABELS[mv]+'</button>';
     }).join('')+'</div>'
+    +'<div class="field" style="margin-bottom:10px"><label style="font-size:9px;color:var(--text2)">DATE</label>'
+    +'<input type="date" id="ts-date" value="'+today()+'" style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--rs);padding:11px 13px;color:var(--text);font-size:15px;font-family:inherit;width:100%"/></div>'
     +'<div class="ts-grid">'
     +'<div class="tf"><label>CHARGE (kg)</label><input type="number" inputmode="decimal" step="0.5" id="ts-c" placeholder="---"/></div>'
     +'<div class="tf"><label>REPS</label><input type="number" inputmode="numeric" id="ts-r" placeholder="---"/></div>'
@@ -389,7 +391,8 @@ function calcTS(){
   var prev=RM[curMv];
   var delta=est-prev;
   RM[curMv]=est;svRM();
-  TS.push({mv:curMv,date:today(),charge:c,reps:r,rpe:parseFloat(rpe),rm1:est,id:Date.now()});
+  var tsDate=document.getElementById('ts-date')?document.getElementById('ts-date').value:today();
+  TS.push({mv:curMv,date:tsDate,charge:c,reps:r,rpe:parseFloat(rpe),rm1:est,id:Date.now()});
   svTS();
   var col=MV_COLORS[curMv];
   document.getElementById('ts-result').innerHTML='<div class="result-box" style="background:'+col+'12;border-color:'+col+'40">'
