@@ -3,93 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Powerbuilding — Blood & Turbo</title>
+<title>Blood & Turbo — Powerbuilding</title>
 <style>
-  :root{--bg:#0a0a0a;--surface:#111;--card:#1a1a1a;--border:#2a2a2a;--red:#e63946;--orange:#f4a261;--gold:#e9c46a;--green:#2a9d5c;--blue:#457b9d;--text:#f0f0f0;--muted:#888;--dim:#555;}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:14px}
-  .nav{display:flex;overflow-x:auto;background:var(--surface);border-bottom:2px solid var(--border);position:sticky;top:0;z-index:100;scrollbar-width:none}
-  .nav::-webkit-scrollbar{display:none}
-  .nav-btn{flex:none;padding:14px 16px;background:none;border:none;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:.2s}
-  .nav-btn.active{color:var(--red);border-bottom-color:var(--red)}
-  .page{display:none;padding:16px;max-width:600px;margin:0 auto}
-  .page.active{display:block}
-  .page-title{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:2px}
-  .page-sub{color:var(--muted);font-size:12px;margin-bottom:18px}
-  .cycle-bar{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
-  .sem-btn{padding:7px 13px;border-radius:6px;border:1px solid var(--border);background:var(--card);color:var(--muted);font-size:11px;font-weight:700;cursor:pointer;transition:.2s}
-  .sem-btn.active{background:var(--red);border-color:var(--red);color:#fff}
-  .sem-btn.dl.active{background:var(--blue);border-color:var(--blue)}
-  .card{background:var(--card);border-radius:12px;border:1px solid var(--border);margin-bottom:14px;overflow:hidden}
-  .card-hdr{padding:13px 15px;display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
-  .card-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
-  .i-upper{background:rgba(230,57,70,.15)}.i-lower{background:rgba(244,162,97,.15)}.i-opt{background:rgba(69,123,157,.15)}
-  .card-title{font-weight:700;font-size:14px;flex:1}
-  .tag{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 7px;border-radius:4px}
-  .t-force{background:rgba(230,57,70,.2);color:var(--red)}.t-vol{background:rgba(244,162,97,.2);color:var(--orange)}.t-opt{background:rgba(69,123,157,.2);color:var(--blue)}
-  .chev{color:var(--muted);font-size:18px;transition:transform .25s}
-  .card-body{display:none;border-top:1px solid var(--border)}
-  .card-body.open{display:block}
-  .grp{padding:11px 15px;border-bottom:1px solid var(--border)}
-  .grp:last-child{border-bottom:none}
-  .grp-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:7px}
-  .exo{display:flex;align-items:flex-start;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1e1e1e;gap:8px}
-  .exo:last-child{border-bottom:none}
-  .exo-l{flex:1}
-  .exo-n{font-size:13px;font-weight:500}
-  .exo-n.ss{color:var(--gold)}.exo-n.main{color:var(--red);font-weight:700}
-  .exo-note{font-size:11px;color:var(--dim);margin-top:2px}
-  .exo-p{font-size:12px;color:var(--orange);font-weight:700;white-space:nowrap;text-align:right;min-width:60px}
-  .rir{display:inline-block;background:rgba(233,196,106,.15);color:var(--gold);font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;margin-top:3px}
-  .ss-bracket{border-left:2px solid var(--gold);margin-left:4px;padding-left:8px}
-  .tc{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:18px;margin-bottom:14px}
-  .tc-title{font-size:15px;font-weight:700;margin-bottom:3px}
-  .tc-sub{color:var(--muted);font-size:12px;margin-bottom:14px}
-  .irow{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
-  .ig{flex:1;min-width:70px}
-  .ig label{display:block;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
-  .ig input,.ig select{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:9px 11px;border-radius:8px;font-size:14px;font-weight:600}
-  .ig input:focus,.ig select:focus{outline:none;border-color:var(--red)}
-  .cbtn{width:100%;padding:12px;background:var(--red);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:14px}
-  .rbox{background:var(--surface);border-radius:10px;padding:15px;display:none}
-  .rbox.show{display:block}
-  .r-main{font-size:30px;font-weight:800;color:var(--red);text-align:center;margin-bottom:12px}
-  .r-main span{font-size:13px;color:var(--muted);font-weight:500;display:block;margin-bottom:4px}
-  .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
-  .pi{background:var(--card);border-radius:8px;padding:9px;text-align:center}
-  .pi-l{font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px}
-  .pi-v{font-size:15px;font-weight:800}
-  .pi-s{font-size:10px;color:var(--muted);margin-top:2px}
-  .hi{background:var(--surface);border-radius:8px;padding:11px 13px;margin-bottom:7px;display:flex;justify-content:space-between;align-items:center}
-  .hi-n{font-weight:700;margin-bottom:2px;font-size:13px}
-  .hi-d{font-size:11px;color:var(--muted)}
-  .hi-v{font-size:18px;font-weight:800;color:var(--orange)}
-  .hi-x{background:none;border:none;color:var(--dim);font-size:18px;cursor:pointer;padding:0 4px}
-  .empty{text-align:center;color:var(--muted);padding:28px;font-size:13px}
-  .pc{background:var(--card);border-radius:12px;border:1px solid var(--border);margin-bottom:14px;overflow:hidden}
-  .ph{padding:13px 15px;font-weight:700;font-size:14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-  .ph span{color:var(--muted);font-size:11px;font-weight:500}
-  .pt{width:100%;border-collapse:collapse}
-  .pt th{background:var(--surface);padding:8px 11px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;font-weight:700}
-  .pt td{padding:9px 11px;border-bottom:1px solid var(--border);font-size:12px}
-  .pt tr:last-child td{border-bottom:none}
-  .ts{color:var(--red);font-weight:700}.td{color:var(--blue)}.tp{color:var(--gold)}
-  .cc{background:var(--card);border-radius:12px;border:1px solid var(--border);margin-bottom:12px;overflow:hidden}
-  .ch{padding:12px 15px;font-weight:700;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);font-size:14px}
-  .zd{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-  .z2c{background:var(--green)}.z3c{background:var(--orange)}.z45c{background:var(--red)}
-  .cb{padding:11px 15px}
-  .cr{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #1e1e1e;font-size:13px}
-  .cr:last-child{border-bottom:none}
-  .cr-s{color:var(--muted);font-size:11px;font-weight:700;text-transform:uppercase}
-  .cr-v{font-weight:600;color:var(--orange)}
-  .opt-badge{background:var(--blue);color:#fff;font-size:9px;font-weight:800;padding:2px 5px;border-radius:3px;letter-spacing:.04em;vertical-align:middle;margin-left:5px}
+:root{
+  --bg:#0a0a0a;--surface:#111;--card:#1a1a1a;--border:#2a2a2a;
+  --red:#e63946;--orange:#f4a261;--gold:#e9c46a;--green:#2a9d5c;
+  --blue:#457b9d;--text:#f0f0f0;--muted:#888;--dim:#444;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;font-size:14px}
+.nav{display:flex;overflow-x:auto;background:var(--surface);border-bottom:2px solid var(--border);position:sticky;top:0;z-index:100;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-btn{flex:none;padding:14px 16px;background:none;border:none;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:.2s}
+.nav-btn.active{color:var(--red);border-bottom-color:var(--red)}
+.page{display:none;padding:16px;max-width:600px;margin:0 auto}
+.page.active{display:block}
+.page-title{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:2px}
+.page-sub{color:var(--muted);font-size:12px;margin-bottom:18px}
+.card{background:var(--card);border-radius:12px;border:1px solid var(--border);margin-bottom:14px;overflow:hidden}
+.card-hdr{padding:13px 15px;display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
+.card-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.i-upper{background:rgba(230,57,70,.15)}.i-lower{background:rgba(244,162,97,.15)}
+.card-title{font-weight:700;font-size:14px;flex:1}
+.tag{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 7px;border-radius:4px}
+.t-force{background:rgba(230,57,70,.2);color:var(--red)}
+.t-hyp{background:rgba(244,162,97,.2);color:var(--orange)}
+.chev{color:var(--muted);font-size:18px;transition:transform .25s}
+.card-body{display:none;border-top:1px solid var(--border)}
+.card-body.open{display:block}
+.grp{padding:11px 15px;border-bottom:1px solid var(--border)}
+.grp:last-child{border-bottom:none}
+.grp-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:7px}
+.exo{display:flex;align-items:flex-start;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1e1e1e;gap:8px}
+.exo:last-child{border-bottom:none}
+.exo-l{flex:1}
+.exo-n{font-size:13px;font-weight:500}
+.exo-n.ss{color:var(--gold)}.exo-n.main{color:var(--red);font-weight:700}
+.exo-note{font-size:11px;color:var(--dim);margin-top:2px}
+.exo-p{font-size:12px;color:var(--orange);font-weight:700;white-space:nowrap;text-align:right;min-width:80px}
+.ss-bracket{border-left:2px solid var(--gold);margin-left:4px;padding-left:8px}
+.delavier{font-size:10px;color:#555;font-style:italic;margin-top:1px}
+.s100{background:rgba(42,157,92,.1);border:1px solid rgba(42,157,92,.3);border-radius:8px;padding:8px 11px;margin-top:6px}
+.s100-lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:3px}
+.amrap-box{background:rgba(230,57,70,.08);border:1px solid rgba(230,57,70,.25);border-radius:8px;padding:8px 11px;margin-bottom:8px}
+.amrap-lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--red);margin-bottom:3px}
+
+/* PROGRESSION */
+.move-card{background:var(--card);border-radius:12px;border:1px solid var(--border);margin-bottom:14px;padding:16px}
+.move-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.move-name{font-size:15px;font-weight:800}
+.move-inc{font-size:11px;color:var(--muted);font-weight:600}
+.cluster-badge{background:rgba(244,162,97,.2);color:var(--orange);font-size:10px;font-weight:800;padding:3px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.05em}
+.setup-row{display:flex;gap:8px;margin-bottom:10px}
+.setup-row .ig{flex:1}
+.ig label{display:block;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.ig input{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:9px 11px;border-radius:8px;font-size:14px;font-weight:600}
+.ig input:focus{outline:none;border-color:var(--red)}
+.week-info{background:var(--surface);border-radius:8px;padding:10px 12px;margin-bottom:10px;font-size:12px;color:var(--muted);text-align:center}
+.week-info b{color:var(--text);font-size:14px}
+.set-table{width:100%;border-collapse:collapse;margin-bottom:10px}
+.set-table th{font-size:10px;color:var(--muted);text-transform:uppercase;padding:5px 4px;text-align:center;font-weight:700}
+.set-table td{padding:5px 4px;text-align:center}
+.set-table td:first-child{text-align:left;font-size:12px;font-weight:700}
+.set-table input{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:7px 4px;border-radius:6px;font-size:13px;font-weight:700;text-align:center}
+.set-table input:focus{outline:none;border-color:var(--red)}
+.weight-disp{font-size:13px;font-weight:800;color:var(--orange)}
+.btn-row{display:flex;gap:8px}
+.cbtn{flex:1;padding:11px;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer}
+.cbtn-main{background:var(--red);color:#fff}
+.cbtn-sec{background:var(--surface);color:var(--text);border:1px solid var(--border)}
+.history-toggle{font-size:11px;color:var(--blue);cursor:pointer;text-align:center;margin-top:8px;font-weight:700}
+.history-list{display:none;margin-top:8px;border-top:1px solid var(--border);padding-top:8px}
+.history-list.open{display:block}
+.hrow{display:flex;justify-content:space-between;padding:5px 0;font-size:11px;border-bottom:1px solid #1e1e1e}
+.hrow:last-child{border-bottom:none}
+.hrow-r{color:var(--muted)}
+.hrow-r b{color:var(--text)}
+.empty{text-align:center;color:var(--muted);padding:28px;font-size:13px}
+
+.cc{background:var(--card);border-radius:12px;border:1px solid var(--border);margin-bottom:12px;overflow:hidden}
+.ch{padding:12px 15px;font-weight:700;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);font-size:14px}
+.zd{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.z2c{background:var(--green)}.z45c{background:var(--red)}
+.cb{padding:11px 15px}
+.cr{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #1e1e1e;font-size:13px}
+.cr:last-child{border-bottom:none}
+.cr-s{color:var(--muted);font-size:11px;font-weight:700;text-transform:uppercase}
+.cr-v{font-weight:600;color:var(--orange)}
+.tc{background:var(--card);border-radius:12px;border:1px solid var(--border);padding:18px;margin-bottom:14px}
+.tc-title{font-size:15px;font-weight:700;margin-bottom:3px}
+.tc-sub{color:var(--muted);font-size:12px;margin-bottom:14px}
+
+.hrow-del{background:none;border:none;color:var(--red);font-size:15px;font-weight:800;cursor:pointer;padding:0 0 0 10px;flex-shrink:0;line-height:1}
+.move-reset{font-size:11px;color:var(--red);cursor:pointer;text-align:center;margin-top:10px;font-weight:700;opacity:.8}
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.65);z-index:1000;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;max-width:340px;width:100%}
+.modal-text{font-size:14px;margin-bottom:16px;line-height:1.5}
 </style>
 </head>
 <body>
 <nav class="nav">
   <button class="nav-btn active" onclick="showPage('prog',this)">Programme</button>
-  <button class="nav-btn" onclick="showPage('topset',this)">Top Set</button>
   <button class="nav-btn" onclick="showPage('progression',this)">Progression</button>
   <button class="nav-btn" onclick="showPage('course',this)">Course</button>
   <button class="nav-btn" onclick="showPage('donnees',this)">Données</button>
@@ -98,55 +113,66 @@
 <!-- PROGRAMME -->
 <div id="prog" class="page active">
   <div class="page-title">Blood & Turbo</div>
-  <div class="page-sub">Powerbuilding — Cycle 4 semaines</div>
-  <div class="cycle-bar">
-    <button class="sem-btn active" onclick="setSem(1,this)">S1 Hypertrophie</button>
-    <button class="sem-btn" onclick="setSem(2,this)">S2 Mixte</button>
-    <button class="sem-btn" onclick="setSem(3,this)">S3 Force</button>
-    <button class="sem-btn" onclick="setSem(4,this)">S4 Pic 🏆</button>
-    <button class="sem-btn dl" onclick="setSem(5,this)">S5 Deload</button>
-  </div>
+  <div class="page-sub">Powerbuilding Hypertrophie · Méthode Delavier · AMRAP progressif</div>
 
   <!-- UPPER 1 -->
   <div class="card">
     <div class="card-hdr" onclick="tog(this)">
       <div class="card-icon i-upper">💪</div>
-      <div class="card-title">Upper 1 — Bench Lourd</div>
-      <span class="tag t-force">Force</span><span class="chev">›</span>
+      <div class="card-title">Upper 1 — Bench + Dos largeur</div>
+      <span class="tag t-force">AMRAP</span><span class="chev">›</span>
     </div>
     <div class="card-body">
       <div class="grp">
-        <div class="grp-lbl">⚡ Bloc Force</div>
+        <div class="amrap-box">
+          <div class="amrap-lbl">⚡ AMRAP RPE9 — superset dès l'échauffement</div>
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n main">Bench Press</div><div class="delavier">Faisceau sternal · Top set + 2 back-offs (-5% / -10%) AMRAP</div></div>
+          </div>
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n ss">Chin-ups</div><div class="delavier">GD haut · chef long biceps · superset toutes séries</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="grp">
+        <div class="grp-lbl">🏋️ Dos largeur — GD bas</div>
         <div class="exo">
-          <div class="exo-l"><div class="exo-n main">Bench Press — Single</div></div>
-          <div class="exo-p" id="u1-s"></div>
+          <div class="exo-l"><div class="exo-n">Tirage Vertical Uni Poulie</div><div class="delavier">GD bas · buste droit · amplitude max</div></div>
+          <div class="exo-p">2×8-12</div>
         </div>
+      </div>
+      <div class="grp">
+        <div class="grp-lbl">💪 Bras — Superset agoniste/antagoniste</div>
+        <div class="ss-bracket">
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n ss">Curl Incliné Haltères</div><div class="delavier">Chef long · étirement maximal</div></div>
+            <div class="exo-p">3×10-12</div>
+          </div>
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n ss">Triceps Extension Poulie</div><div class="delavier">Chef latéral · contraction</div></div>
+            <div class="exo-p">3×10-12</div>
+          </div>
+        </div>
+      </div>
+      <div class="grp">
+        <div class="grp-lbl">🎯 Pecs isolation + Arrière épaule — Superset</div>
+        <div class="ss-bracket">
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n ss">Pec Dec</div><div class="delavier">Faisceau sternal · contraction centrale</div></div>
+            <div class="exo-p">2×12-15</div>
+          </div>
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n ss">Reverse Pec Dec / Oiseau Poulie</div><div class="delavier">Faisceau postérieur · arrière épaule</div></div>
+            <div class="exo-p">2×12-15</div>
+          </div>
+        </div>
+      </div>
+      <div class="grp">
+        <div class="grp-lbl">🎯 Épaules — Faisceau moyen</div>
         <div class="exo">
-          <div class="exo-l"><div class="exo-n main">Bench Press — Back-off</div><div class="exo-note" id="u1-bo"></div></div>
+          <div class="exo-l"><div class="exo-n">Élév. Latérales Haltères</div><div class="delavier">Faisceau moyen · isolation</div></div>
+          <div class="exo-p">3×12-15</div>
         </div>
-      </div>
-      <div class="grp">
-        <div class="grp-lbl">🔁 Superset pendant repos bench</div>
-        <div class="ss-bracket">
-          <div class="exo"><div class="exo-l"><div class="exo-n ss">Chin-ups</div></div><div class="exo-p" id="u1-chin"></div></div>
-          <div class="exo"><div class="exo-l"><div class="exo-n ss">Band Pull-aparts</div></div><div class="exo-p" id="u1-band"></div></div>
-        </div>
-      </div>
-      <div class="grp">
-        <div class="grp-lbl">🏋️ Volume Haut</div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Dev. Hammer Uni</div></div><div class="exo-p" id="u1-hammer"></div></div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Tirage Large</div></div><div class="exo-p" id="u1-tl"></div></div>
-      </div>
-      <div class="grp">
-        <div class="grp-lbl">🔁 Superset</div>
-        <div class="ss-bracket">
-          <div class="exo"><div class="exo-l"><div class="exo-n ss">Écarté Haltères</div></div><div class="exo-p" id="u1-ec"></div></div>
-          <div class="exo"><div class="exo-l"><div class="exo-n ss">Curl Incliné</div></div><div class="exo-p" id="u1-curl"></div></div>
-        </div>
-      </div>
-      <div class="grp">
-        <div class="grp-lbl">🎯 Épaules</div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Élév. Lat + Front + Rear Raises</div></div><div class="exo-p" id="u1-elev"></div></div>
       </div>
     </div>
   </div>
@@ -155,40 +181,66 @@
   <div class="card">
     <div class="card-hdr" onclick="tog(this)">
       <div class="card-icon i-upper">🏋️</div>
-      <div class="card-title">Upper 2 — Tempo + Militaire</div>
-      <span class="tag t-vol">Volume</span><span class="chev">›</span>
+      <div class="card-title">Upper 2 — Militaire + Incliné</div>
+      <span class="tag t-force">AMRAP</span><span class="chev">›</span>
     </div>
     <div class="card-body">
       <div class="grp">
-        <div class="grp-lbl">⚡ Bloc Force</div>
+        <div class="amrap-box">
+          <div class="amrap-lbl">⚡ AMRAP RPE9 — superset dès l'échauffement</div>
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n main">Militaire Smith</div><div class="delavier">Faisceau antérieur · Top set + 2 back-offs (-5% / -10%) AMRAP</div></div>
+          </div>
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n ss">Tractions Pronation</div><div class="delavier">GD largeur · superset toutes séries · circuit différent des chin-ups</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="grp">
+        <div class="grp-lbl">🏋️ Superset — Pecs haut + Dos épaisseur</div>
+        <div class="ss-bracket">
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n ss">Développé Incliné Smith</div><div class="delavier">Faisceau claviculaire · circuit B pecs · point faible</div></div>
+            <div class="exo-p">2×8-10</div>
+          </div>
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n ss">Rowing Hammer Coude Fermé</div><div class="delavier">Grand dorsal épaisseur</div></div>
+            <div class="exo-p">2×8-12</div>
+          </div>
+        </div>
+      </div>
+      <div class="grp">
+        <div class="grp-lbl">💪 Biceps chef court</div>
         <div class="exo">
-          <div class="exo-l"><div class="exo-n main">Militaire Assis Barre</div><div class="exo-note" id="u2-mil-note"></div></div>
-          <div class="exo-p" id="u2-mil"></div>
+          <div class="exo-l"><div class="exo-n">Curl Larry Scott</div><div class="delavier">Chef court · pic de contraction</div></div>
+          <div class="exo-p">3×10-12</div>
         </div>
       </div>
       <div class="grp">
-        <div class="grp-lbl">🔁 Superset pendant repos militaire</div>
+        <div class="grp-lbl">🎯 Superset — Arrière épaule + Milieu épaule</div>
         <div class="ss-bracket">
-          <div class="exo"><div class="exo-l"><div class="exo-n ss">Traction Supi</div></div><div class="exo-p" id="u2-trac"></div></div>
-          <div class="exo"><div class="exo-l"><div class="exo-n ss">Band Pull-aparts</div></div><div class="exo-p" id="u2-band"></div></div>
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n ss">Reverse Pec Deck Uni</div><div class="delavier">Faisceau postérieur · isolation · point faible</div></div>
+            <div class="exo-p">3×12-15</div>
+          </div>
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n ss">Élév. Latérales Poulie Uni</div><div class="delavier">Faisceau moyen · tension continue · point faible</div></div>
+            <div class="exo-p">3×12-15</div>
+          </div>
         </div>
       </div>
       <div class="grp">
-        <div class="grp-lbl">🔁 Superset</div>
+        <div class="grp-lbl">🔁 Superset — Triceps chef long + Épaule ant.</div>
         <div class="ss-bracket">
-          <div class="exo"><div class="exo-l"><div class="exo-n ss">Bench Tempo 3-1-0-1</div><div class="exo-note">3s descente · 1s pause poitrine</div></div><div class="exo-p" id="u2-bench"></div></div>
-          <div class="exo"><div class="exo-l"><div class="exo-n ss">Tirage Horizontal</div></div><div class="exo-p" id="u2-th"></div></div>
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n ss">Magic Triceps Corde Overhead</div><div class="delavier">Chef long · étirement maximal</div></div>
+            <div class="exo-p">2×12-15</div>
+          </div>
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n ss">Front Raises</div><div class="delavier">Faisceau antérieur</div></div>
+            <div class="exo-p">2×12-15</div>
+          </div>
         </div>
-      </div>
-      <div class="grp">
-        <div class="grp-lbl">💪 Bras</div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Cable Extension</div></div><div class="exo-p" id="u2-ext"></div></div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Cable Curl</div></div><div class="exo-p" id="u2-curl"></div></div>
-      </div>
-      <div class="grp">
-        <div class="grp-lbl">🎯 Épaules</div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Reverse Pec Deck</div></div><div class="exo-p" id="u2-rpd"></div></div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Élév. Lat Poulie</div><div class="exo-note" id="u2-elev-note"></div></div><div class="exo-p" id="u2-elev"></div></div>
       </div>
     </div>
   </div>
@@ -197,50 +249,53 @@
   <div class="card">
     <div class="card-hdr" onclick="tog(this)">
       <div class="card-icon i-lower">🦵</div>
-      <div class="card-title">Lower 1 — Squat + Quad</div>
-      <span class="tag t-force">Force</span><span class="chev">›</span>
+      <div class="card-title">Lower 1 — Smith Squat + Isolation</div>
+      <span class="tag t-force">AMRAP</span><span class="chev">›</span>
     </div>
     <div class="card-body">
       <div class="grp">
-        <div class="grp-lbl">⚡ Bloc Force</div>
+        <div class="grp-lbl">🔥 Échauffement — Ischios + Genoux</div>
         <div class="exo">
-          <div class="exo-l"><div class="exo-n main">Squat — Top Set + 2 Back-off</div><div class="exo-note" id="l1-sq-note"></div></div>
-          <div class="exo-p" id="l1-sq"></div>
-        </div>
-        <div class="grp-lbl" style="margin-top:8px">🔁 Superset pendant repos squat</div>
-        <div class="ss-bracket">
-          <div class="exo"><div class="exo-l"><div class="exo-n ss">Tibialis Raises</div></div><div class="exo-p">3×20</div></div>
-        </div>
-        <div class="exo" style="margin-top:8px">
-          <div class="exo-l"><div class="exo-n main">Squat Back-off</div><div class="exo-note" id="l1-bo-note"></div></div>
-          <div class="exo-p" id="l1-bo"></div>
+          <div class="exo-l"><div class="exo-n">Leg Curl</div><div class="delavier">Échauffement genoux · ischio flexion contraction</div></div>
+          <div class="exo-p">2×10-12</div>
         </div>
       </div>
       <div class="grp">
-        <div class="grp-lbl">🦵 Chaîne Postérieure</div>
+        <div class="amrap-box">
+          <div class="amrap-lbl">⚡ AMRAP RPE9 — superset dès l'échauffement</div>
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n main">Smith Squat</div><div class="delavier">Top set + 2 back-offs (-5% / -10%) AMRAP</div></div>
+          </div>
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n ss">Tibialis Raises + Mollets</div><div class="delavier">Superset toutes séries</div></div>
+            <div class="exo-p">3×15-20</div>
+          </div>
+        </div>
+      </div>
+      <div class="grp">
+        <div class="grp-lbl">🦵 Quad isolation + Postfatigue Delavier</div>
         <div class="exo">
-          <div class="exo-l"><div class="exo-n">Jambes Tendues</div></div>
-          <div class="exo-p" id="l1-jt"></div>
+          <div class="exo-l"><div class="exo-n">Leg Extension — Tension Continue</div><div class="delavier">Bas du quad · droit de la cuisse · point faible</div></div>
+          <div class="exo-p">2×12-15</div>
         </div>
-        <div class="grp-lbl" style="margin-top:8px">🔁 Superset pendant repos jambes tendues</div>
-        <div class="ss-bracket">
-          <div class="exo"><div class="exo-l"><div class="exo-n ss">Mollets Debout</div></div><div class="exo-p" id="l1-mol"></div></div>
-        </div>
-      </div>
-      <div class="grp">
-        <div class="grp-lbl">🦵 Quad</div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Pendulum Squat</div></div><div class="exo-p" id="l1-pend"></div></div>
-      </div>
-      <div class="grp">
-        <div class="grp-lbl">🔁 Superset</div>
-        <div class="ss-bracket">
-          <div class="exo"><div class="exo-l"><div class="exo-n ss">Leg Curl (Rest Pause)</div></div><div class="exo-p" id="l1-lc"></div></div>
-          <div class="exo"><div class="exo-l"><div class="exo-n ss">Leg Extension (Rest Pause)</div></div><div class="exo-p" id="l1-ext"></div></div>
+        <div class="exo">
+          <div class="exo-l"><div class="exo-n ss">↳ Postfatigue — Sissy Squat</div><div class="delavier">Enchaîné à l'échec · Delavier</div></div>
+          <div class="exo-p">échec</div>
         </div>
       </div>
       <div class="grp">
-        <div class="grp-lbl">💪 Circuit Abdos</div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Toes to Bar → Crunch → Sit-up → Gainage Côté → Relevé de Buste</div></div><div class="exo-p" id="l1-ab"></div></div>
+        <div class="grp-lbl">🦵 Adducteurs</div>
+        <div class="exo">
+          <div class="exo-l"><div class="exo-n">Adducteurs Machine</div><div class="delavier">Intérieur cuisse · classic physique</div></div>
+          <div class="exo-p">2×15-20</div>
+        </div>
+      </div>
+      <div class="grp">
+        <div class="grp-lbl">💪 Abdos Haut</div>
+        <div class="exo">
+          <div class="exo-l"><div class="exo-n">Crunch Poulie</div></div>
+          <div class="exo-p">2×15</div>
+        </div>
       </div>
     </div>
   </div>
@@ -248,406 +303,370 @@
   <!-- LOWER 2 -->
   <div class="card">
     <div class="card-hdr" onclick="tog(this)">
-      <div class="card-icon i-lower">🏆</div>
-      <div class="card-title">Lower 2 — Deadlift Lourd</div>
-      <span class="tag t-force">Force</span><span class="chev">›</span>
+      <div class="card-icon i-lower">💀</div>
+      <div class="card-title">Lower 2 — Block Pull + Presse</div>
+      <span class="tag t-force">AMRAP</span><span class="chev">›</span>
     </div>
     <div class="card-body">
       <div class="grp">
-        <div class="grp-lbl">⚡ Bloc Force — Single Prioritaire</div>
+        <div class="grp-lbl">🔥 Échauffement — Trapèzes</div>
         <div class="exo">
-          <div class="exo-l"><div class="exo-n main">Deadlift Conventionnel — Single</div><div class="exo-note" id="l2-dl-note"></div></div>
-          <div class="exo-p" id="l2-dl"></div>
+          <div class="exo-l"><div class="exo-n">Shrug Barre Lourd</div><div class="delavier">Trapèzes supérieurs · pendant échauffement block pull</div></div>
+          <div class="exo-p">montée prog.</div>
+        </div>
+      </div>
+      <div class="grp">
+        <div class="amrap-box">
+          <div class="amrap-lbl">⚡ AMRAP RPE9</div>
+          <div class="exo">
+            <div class="exo-l"><div class="exo-n main">Block Pull Conventionnel</div><div class="delavier">Depuis blocs 10-15cm · Top set + 2 back-offs (-5% / -10%) AMRAP</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="grp">
+        <div class="grp-lbl">🦵 Quad — Circuit B (décharge colonne)</div>
+        <div class="exo">
+          <div class="exo-l"><div class="exo-n">Presse à Cuisse</div><div class="delavier">Circuit nerveux B quad · dos soutenu · après block pull</div></div>
+          <div class="exo-p">2×8-10</div>
         </div>
         <div class="exo">
-          <div class="exo-l"><div class="exo-n main">Deadlift — Top Set + 2 Back-off</div><div class="exo-note" id="l2-bo-note"></div></div>
-        </div>
-        <div class="grp-lbl" style="margin-top:8px">🔁 Superset pendant repos deadlift</div>
-        <div class="ss-bracket">
-          <div class="exo"><div class="exo-l"><div class="exo-n ss">Mollets Debout</div></div><div class="exo-p" id="l2-mol"></div></div>
+          <div class="exo-l"><div class="exo-n ss">↳ Superset — Mollets Presse ou Assis</div></div>
+          <div class="exo-p">3×15-20</div>
         </div>
       </div>
       <div class="grp">
-        <div class="grp-lbl">🦵 Squat Technique</div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Squat Tempo 3-0-1-0</div><div class="exo-note" id="l2-sq-note"></div></div><div class="exo-p" id="l2-sq"></div></div>
-        <div class="grp-lbl" style="margin-top:8px">🔁 Superset pendant repos squat tempo</div>
-        <div class="ss-bracket">
-          <div class="exo"><div class="exo-l"><div class="exo-n ss">Tibialis Raises</div></div><div class="exo-p">2×20</div></div>
+        <div class="grp-lbl">🦵 Lombaires / Ischios — Contraction</div>
+        <div class="exo">
+          <div class="exo-l"><div class="exo-n">Extension de Buste Lestée</div><div class="delavier">Banc lombaires · ischio extension hanche</div></div>
+          <div class="exo-p">2×12-15</div>
         </div>
       </div>
       <div class="grp">
-        <div class="grp-lbl">🏋️ Dos / Trapèzes</div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Shrug Barre</div></div><div class="exo-p" id="l2-shrug"></div></div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Rowing Hammer</div></div><div class="exo-p" id="l2-row"></div></div>
+        <div class="grp-lbl">🏋️ Trapèze moyen — Dos épaisseur</div>
+        <div class="exo">
+          <div class="exo-l"><div class="exo-n">Rowing Hammer Coude Ouvert</div><div class="delavier">Trapèze moyen · rhomboïdes</div></div>
+          <div class="exo-p">2×12-15</div>
+        </div>
       </div>
       <div class="grp">
-        <div class="grp-lbl">💪 Circuit Abdos</div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Toes to Bar → Relevé Jambes → Relevé Genoux → Crunch → Relevé de Buste → Relevé Buste Côté</div><div class="exo-note">Tout à l'échec enchaîné</div></div><div class="exo-p" id="l2-ab"></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- OPT -->
-  <div class="card">
-    <div class="card-hdr" onclick="tog(this)">
-      <div class="card-icon i-opt">🌿</div>
-      <div class="card-title">Séance 5 — Streetworkout <span class="opt-badge">OPT</span></div>
-      <span class="tag t-opt">Optionnel</span><span class="chev">›</span>
-    </div>
-    <div class="card-body">
-      <div class="grp">
-        <div class="grp-lbl">🌿 Libre — selon forme</div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Tractions (variations libres)</div></div><div class="exo-p">libre</div></div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Dips</div></div><div class="exo-p">libre</div></div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Pompes (variations)</div></div><div class="exo-p">libre</div></div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Muscle-up / Front Lever</div></div><div class="exo-p">si dispo</div></div>
+        <div class="grp-lbl">💪 Circuit Abdos Bas — Enchaîné à l'échec</div>
+        <div class="exo">
+          <div class="exo-l"><div class="exo-n">Toes to Bar → Relevé Jambes → Montée Genoux → Sit-up → Ext. Lombaire → Ext. Lombaire Côté</div></div>
+          <div class="exo-p">2 tours</div>
+        </div>
       </div>
       <div class="grp">
-        <div class="grp-lbl">💪 Circuit Abdos</div>
-        <div class="exo"><div class="exo-l"><div class="exo-n">Toes to Bar → Relevé Jambes → L-sit → Gainage</div></div><div class="exo-p">3 tours</div></div>
+        <div class="s100">
+          <div class="s100-lbl">🟢 Série de 100 — Rappel Point Faible</div>
+          <div class="exo-n">Élévations Latérales Poulie</div>
+          <div class="delavier">Épaules point faible · pas travaillées la veille en force · repos week-end · Delavier</div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- TOP SET -->
-<div id="topset" class="page">
-  <div class="page-title">Top Set</div>
-  <div class="page-sub">Estimation 1RM et suivi de progression SBD</div>
-  <div class="tc">
-    <div class="tc-title">Calculateur 1RM</div>
-    <div class="tc-sub">Formule Epley corrigée par RIR — résultat indicatif</div>
-    <div class="irow">
-      <div class="ig"><label>Mouvement</label>
-        <select id="rm-mvt"><option>Bench Press</option><option>Deadlift</option><option>Squat</option><option>Militaire</option></select>
-      </div>
-    </div>
-    <div class="irow">
-      <div class="ig"><label>Charge (kg)</label><input type="number" id="rm-kg" placeholder="90" step="0.5"></div>
-      <div class="ig"><label>Reps</label><input type="number" id="rm-reps" placeholder="3" min="1" max="20"></div>
-      <div class="ig"><label>RIR</label>
-        <select id="rm-rir"><option value="0">0 RIR</option><option value="1">1 RIR</option><option value="2" selected>2 RIR</option><option value="3">3 RIR</option><option value="4">4 RIR</option></select>
-      </div>
-    </div>
-    <button class="cbtn" onclick="calcRM()">Calculer</button>
-    <div class="rbox" id="rbox">
-      <div class="r-main" id="r-main"><span>1RM estimé</span>— kg</div>
-    </div>
-  </div>
-  <div class="tc">
-    <div class="tc-title">Progression SBD</div>
-    <div class="tc-sub" style="margin-bottom:10px">1RM estimé au fil des séances</div>
-    <div style="display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap">
-      <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700"><span style="width:12px;height:3px;background:#e63946;display:inline-block;border-radius:2px"></span>Bench</span>
-      <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700"><span style="width:12px;height:3px;background:#e9c46a;display:inline-block;border-radius:2px"></span>Squat</span>
-      <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700"><span style="width:12px;height:3px;background:#457b9d;display:inline-block;border-radius:2px"></span>Deadlift</span>
-    </div>
-    <div style="position:relative;height:200px"><canvas id="sbd-chart"></canvas></div>
-    <div id="sbd-empty" style="text-align:center;color:var(--muted);font-size:12px;padding:20px;display:none">Enregistre des séances pour voir la courbe</div>
-  </div>
-  <div class="tc">
-    <div class="tc-title">Historique</div>
-    <div id="hist"></div>
-  </div>
-</div>
-
-<!-- DONNÉES -->
-<div id="donnees" class="page">
-  <div class="page-title">Données</div>
-  <div class="page-sub">Sauvegarde de l'historique Top Set</div>
-  <div class="tc">
-    <div class="tc-title">Exporter</div>
-    <div class="tc-sub">Télécharge tes données pour ne pas les perdre</div>
-    <button class="cbtn" onclick="exportTS()">⬇ Exporter l'historique</button>
-  </div>
-  <div class="tc">
-    <div class="tc-title">Importer</div>
-    <div class="tc-sub">Restaure un export précédent</div>
-    <button class="cbtn" style="background:var(--blue)" onclick="importTS()">⬆ Importer une sauvegarde</button>
   </div>
 </div>
 
 <!-- PROGRESSION -->
 <div id="progression" class="page">
-  <div class="page-title">Progression</div>
-  <div class="page-sub">Intensités sur le cycle de 4 semaines</div>
-  <div class="pc">
-    <div class="ph">🏋️ Bench Press <span>+3%/sem · 88→98%</span></div>
-    <table class="pt">
-      <tr><th>Sem</th><th>Single</th><th>Back-off 2×</th><th>Tempo U2</th></tr>
-      <tr><td class="ts">S1</td><td>1×88%</td><td>4r @80%</td><td>3×8 @75%</td></tr>
-      <tr><td class="ts">S2</td><td>1×91%</td><td>4r @83%</td><td>3×8 @78%</td></tr>
-      <tr><td class="ts">S3</td><td>1×94%</td><td>3r @86%</td><td>3×8 @81%</td></tr>
-      <tr><td class="tp">S4 🏆</td><td>1×97–98%</td><td>3r @88%</td><td>3×8 @84%</td></tr>
-      <tr><td class="td">S5</td><td>1×70%</td><td>3r @65%</td><td>3×8 @68%</td></tr>
-    </table>
-  </div>
-  <div class="pc">
-    <div class="ph">💀 Deadlift <span>+4%/sem · 88→102%</span></div>
-    <table class="pt">
-      <tr><th>Sem</th><th>Single</th><th>Top Set 3r</th><th>Back-off 2×3</th></tr>
-      <tr><td class="ts">S1</td><td>1×88%</td><td>@80%</td><td>@74%</td></tr>
-      <tr><td class="ts">S2</td><td>1×92%</td><td>@83%</td><td>@77%</td></tr>
-      <tr><td class="ts">S3</td><td>1×96%</td><td>@86%</td><td>@80%</td></tr>
-      <tr><td class="tp">S4 🏆</td><td>1×100–102%</td><td>@88%</td><td>@82%</td></tr>
-      <tr><td class="td">S5</td><td>1×70%</td><td colspan="2">2×3 @65%</td></tr>
-    </table>
-  </div>
-  <div class="pc">
-    <div class="ph">🦵 Squat <span>Top Set + 2 Back-off · RIR décroissant</span></div>
-    <table class="pt">
-      <tr><th>Sem</th><th>Top Set 1×3</th><th>Back-off 2×3 (@90% top)</th></tr>
-      <tr><td class="ts">S1</td><td>3 RIR</td><td>~90% du top set</td></tr>
-      <tr><td class="ts">S2</td><td>2 RIR</td><td>~90% du top set</td></tr>
-      <tr><td class="ts">S3</td><td>1 RIR</td><td>~90% du top set</td></tr>
-      <tr><td class="tp">S4 🏆</td><td>0 RIR</td><td>~90% du top set</td></tr>
-      <tr><td class="td">S5</td><td>4 RIR</td><td>~90% du top set</td></tr>
-    </table>
-  </div>
-  <div class="pc">
-    <div class="ph">🎯 Militaire <span>2×6 piloté au RIR</span></div>
-    <table class="pt">
-      <tr><th>Sem</th><th>2×6 RIR</th></tr>
-      <tr><td class="ts">S1</td><td>3 RIR</td></tr>
-      <tr><td class="ts">S2</td><td>2 RIR</td></tr>
-      <tr><td class="ts">S3</td><td>1 RIR</td></tr>
-      <tr><td class="tp">S4 🏆</td><td>0 RIR</td></tr>
-      <tr><td class="td">S5</td><td>4 RIR</td></tr>
-    </table>
-  </div>
-  <div class="pc">
-    <div class="ph">📊 Volume Accessoires</div>
-    <table class="pt">
-      <tr><th>Sem</th><th>Accessoires</th><th>Bras</th><th>Reps</th></tr>
-      <tr><td class="ts">S1</td><td>3 séries</td><td>3 séries</td><td>×12</td></tr>
-      <tr><td class="ts">S2</td><td>3 séries</td><td>3 séries</td><td>×12</td></tr>
-      <tr><td class="ts">S3</td><td>2 séries</td><td>3 séries</td><td>×12</td></tr>
-      <tr><td class="tp">S4 🏆</td><td>2 séries</td><td>2 séries</td><td>×12</td></tr>
-      <tr><td class="td">S5</td><td>2 séries</td><td>2 séries</td><td>×12</td></tr>
-    </table>
+  <div class="page-title">Progression AMRAP</div>
+  <div class="page-sub">4 mouvements · Top set + 2 back-offs AMRAP RPE9 · +2.5kg (haut) / +5kg (bas) par semaine</div>
+
+  <div id="moves"></div>
+
+  <div class="tc">
+    <div class="tc-title">📖 Rappel du protocole</div>
+    <div class="tc-sub" style="margin-bottom:0">
+      Top set = poids de la semaine, AMRAP RPE9.<br>
+      Back-off 1 = -5% du top set, AMRAP RPE9.<br>
+      Back-off 2 = -10% du top set, AMRAP RPE9.<br><br>
+      <b style="color:var(--orange)">Cluster :</b> si le top set tombe à ≤3 reps, passe ce mouvement en cluster (1 rep + pause 20-30s répétée). Tu peux aussi réduire les back-offs de 10% supplémentaires.<br><br>
+      <b style="color:var(--red)">Fin de cycle :</b> quand la majorité des mouvements sont en cluster et la fatigue s'accumule, lance un nouveau cycle (bouton ci-dessous, sur chaque mouvement) — retest le 1RM ou redémarre ~70% du niveau atteint.
+    </div>
   </div>
 </div>
 
 <!-- COURSE -->
 <div id="course" class="page">
   <div class="page-title">Course</div>
-  <div class="page-sub">2 séances structurées + footing optionnel</div>
-
-  <div class="pc" style="margin-bottom:14px">
-    <div class="ph">📊 Zones de référence</div>
-    <table class="pt">
-      <tr><th>Zone</th><th>% FCmax</th><th>Ressenti</th></tr>
-      <tr><td><span style="color:var(--green)">Z2</span></td><td>65–75%</td><td>Conversationnel</td></tr>
-      <tr><td><span style="color:var(--orange)">Z3</span></td><td>80–85%</td><td>Seuil / tempo</td></tr>
-      <tr><td><span style="color:var(--red)">Z4-5</span></td><td>88–95%</td><td>VO2max / difficile</td></tr>
-    </table>
-  </div>
-
+  <div class="page-sub">2 séances structurées · cardio doux optionnel</div>
   <div class="cc">
-    <div class="ch"><div class="zd z45c"></div>Fractionné VO2max — Zone 4-5</div>
+    <div class="ch"><div class="zd z45c"></div>Fractionné VO2max — Mardi</div>
     <div class="cb">
-      <div class="cr"><span class="cr-s">Intensité</span><span class="cr-v">88–95% FCmax</span></div>
-      <div class="cr"><span class="cr-s">Récup</span><span class="cr-v">2 min trot Z2 entre reps</span></div>
-      <div class="cr"><span class="cr-s">S1</span><span class="cr-v">4×3 min @90% FCmax</span></div>
-      <div class="cr"><span class="cr-s">S2</span><span class="cr-v">5×3 min @90% FCmax</span></div>
-      <div class="cr"><span class="cr-s">S3</span><span class="cr-v">6×3 min @90% FCmax</span></div>
-      <div class="cr"><span class="cr-s">S4 — allégé</span><span class="cr-v">4×3 min @88% FCmax</span></div>
-      <div class="cr"><span class="cr-s">S5 — deload</span><span class="cr-v">3×3 min @85% FCmax</span></div>
+      <div class="cr"><span class="cr-s">Zone</span><span class="cr-v">88–95% FCmax</span></div>
+      <div class="cr"><span class="cr-s">Récup</span><span class="cr-v">2 min trot entre reps</span></div>
+      <div class="cr"><span class="cr-s">Format</span><span class="cr-v">4-6×3 min @88-90%</span></div>
     </div>
   </div>
-
   <div class="cc">
-    <div class="ch"><div class="zd z2c"></div>Sortie Longue — Zone 2 + Tempo</div>
+    <div class="ch"><div class="zd z2c"></div>Sortie Longue — Dimanche</div>
     <div class="cb">
       <div class="cr"><span class="cr-s">Base Z2</span><span class="cr-v">65–75% FCmax</span></div>
-      <div class="cr"><span class="cr-s">Rappels tempo Z3</span><span class="cr-v">80–85% FCmax</span></div>
-      <div class="cr"><span class="cr-s">S1</span><span class="cr-v">45' Z2 + 2×5' Z3</span></div>
-      <div class="cr"><span class="cr-s">S2</span><span class="cr-v">50' Z2 + 2×6' Z3</span></div>
-      <div class="cr"><span class="cr-s">S3</span><span class="cr-v">55' Z2 + 2×7' Z3</span></div>
-      <div class="cr"><span class="cr-s">S4 — allégé 🏆</span><span class="cr-v">35' Z2 facile</span></div>
-      <div class="cr"><span class="cr-s">S5 — deload</span><span class="cr-v">30' Z2</span></div>
+      <div class="cr"><span class="cr-s">Tempo Z3</span><span class="cr-v">80–85% FCmax</span></div>
+      <div class="cr"><span class="cr-s">Format</span><span class="cr-v">35-50' Z2 + 2×5-7' Z3</span></div>
     </div>
   </div>
-
   <div class="cc">
-    <div class="ch"><div class="zd z2c"></div>Footing Zone 2 <span class="opt-badge">OPT</span></div>
+    <div class="ch"><div class="zd z2c"></div>Cardio Doux — Optionnel</div>
     <div class="cb">
-      <div class="cr"><span class="cr-s">Intensité</span><span class="cr-v">65–75% FCmax</span></div>
-      <div class="cr"><span class="cr-s">S1</span><span class="cr-v">25 min</span></div>
-      <div class="cr"><span class="cr-s">S2</span><span class="cr-v">28 min</span></div>
-      <div class="cr"><span class="cr-s">S3</span><span class="cr-v">30 min</span></div>
-      <div class="cr"><span class="cr-s">S4</span><span class="cr-v">off</span></div>
-      <div class="cr"><span class="cr-s">S5</span><span class="cr-v">off</span></div>
+      <div class="cr"><span class="cr-s">Options</span><span class="cr-v">Marche inclinée · Elliptique · Stepper</span></div>
+      <div class="cr"><span class="cr-s">Durée</span><span class="cr-v">25–40 min Z2</span></div>
+      <div class="cr"><span class="cr-s">Fatigué</span><span class="cr-v">Remplace fractionné</span></div>
+      <div class="cr"><span class="cr-s">En forme</span><span class="cr-v">Session bonus jour creux</span></div>
     </div>
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-<script>
-const D={
-  1:{s:'1×88%',bo:'2×4 @80%',chin:'3×10',band:'3×15',hammer:'3×12',tl:'3×12',ec:'3×12',curl:'3×12',elev:'3×15',
-     u2mil:'2×6',u2rir:'3 RIR',u2trac:'3×10',u2band:'3×15',u2bench:'3×8 @75%',u2th:'3×12',u2ext:'3×12',u2curl:'3×12',u2rpd:'3×15',u2elev:'3×15',u2elevn:'',
-     lsq:'1×3 top set',lsqr:'3 RIR',lbo:'2×3 @90% top',lbon:'',ljt:'2×12',lmol:'3×15',lpend:'2×12',llc:'2×12 RP',lext:'2×12 RP',lab:'3 tours',
-     dl:'1×88%',dln:'Conventionnel',dlbo:'1×3 @80% + 2×3 @74%',l2mol:'3×15',l2sq:'3×6',l2sqn:'@70% — tempo 3-0-1-0',shrug:'3×12',row:'3×12',l2ab:'3 tours'},
-  2:{s:'1×91%',bo:'2×4 @83%',chin:'3×10',band:'3×15',hammer:'3×12',tl:'3×12',ec:'3×12',curl:'3×12',elev:'3×15',
-     u2mil:'2×6',u2rir:'2 RIR',u2trac:'3×10',u2band:'3×15',u2bench:'3×8 @78%',u2th:'3×12',u2ext:'3×12',u2curl:'3×12',u2rpd:'3×15',u2elev:'3×15',u2elevn:'',
-     lsq:'1×3 top set',lsqr:'2 RIR',lbo:'2×3 @90% top',lbon:'',ljt:'2×12',lmol:'3×15',lpend:'2×12',llc:'2×12 RP',lext:'2×12 RP',lab:'3 tours',
-     dl:'1×92%',dln:'Conventionnel',dlbo:'1×3 @83% + 2×3 @77%',l2mol:'3×15',l2sq:'3×6',l2sqn:'@73% — tempo 3-0-1-0',shrug:'3×12',row:'3×12',l2ab:'3 tours'},
-  3:{s:'1×94%',bo:'2×3 @86%',chin:'2×10',band:'2×15',hammer:'2×12',tl:'2×12',ec:'2×12',curl:'3×12',elev:'2×15',
-     u2mil:'2×6',u2rir:'1 RIR',u2trac:'2×10',u2band:'2×15',u2bench:'3×8 @81%',u2th:'2×12',u2ext:'3×12',u2curl:'3×12',u2rpd:'2×15',u2elev:'2×15+myo',u2elevn:'Myo Reps',
-     lsq:'1×3 top set',lsqr:'1 RIR',lbo:'2×3 @90% top',lbon:'',ljt:'2×12',lmol:'2×15',lpend:'2×12',llc:'2×12 RP',lext:'2×12 RP',lab:'2 tours',
-     dl:'1×96%',dln:'Conventionnel',dlbo:'1×3 @86% + 2×3 @80%',l2mol:'2×15',l2sq:'2×6',l2sqn:'@76% — tempo 3-0-1-0',shrug:'2×12',row:'2×12',l2ab:'2 tours'},
-  4:{s:'1×97–98% 🏆',bo:'2×3 @88%',chin:'2×10',band:'2×15',hammer:'2×12',tl:'2×12',ec:'2×12',curl:'2×12',elev:'2×15',
-     u2mil:'2×6',u2rir:'0 RIR',u2trac:'2×10',u2band:'2×15',u2bench:'3×8 @84%',u2th:'2×12',u2ext:'2×12',u2curl:'2×12',u2rpd:'2×15',u2elev:'2×15+myo',u2elevn:'Myo Reps',
-     lsq:'1×3 top set',lsqr:'0 RIR',lbo:'2×3 @90% top',lbon:'',ljt:'2×12',lmol:'2×15',lpend:'2×12',llc:'2×12 RP',lext:'2×12 RP',lab:'2 tours',
-     dl:'1×100–102% 🏆',dln:'PR visé',dlbo:'1×3 @88% + 2×3 @82%',l2mol:'2×15',l2sq:'2×6',l2sqn:'@78% — tempo 3-0-1-0',shrug:'2×12',row:'2×12',l2ab:'2 tours'},
-  5:{s:'1×70% — deload',bo:'2×3 @65%',chin:'2×8',band:'2×12',hammer:'2×10',tl:'2×10',ec:'2×10',curl:'2×10',elev:'2×12',
-     u2mil:'2×6',u2rir:'4 RIR',u2trac:'2×8',u2band:'2×12',u2bench:'3×8 @68%',u2th:'2×10',u2ext:'2×10',u2curl:'2×10',u2rpd:'2×12',u2elev:'2×12',u2elevn:'',
-     lsq:'1×3 top set',lsqr:'4 RIR',lbo:'2×3 @90% top',lbon:'',ljt:'2×10',lmol:'2×12',lpend:'2×10',llc:'2×10 RP',lext:'2×10 RP',lab:'2 tours',
-     dl:'1×70% — deload',dln:'Conventionnel',dlbo:'2×3 @65%',l2mol:'2×12',l2sq:'2×6',l2sqn:'@65% — tempo 3-0-1-0',shrug:'2×10',row:'2×10',l2ab:'2 tours'}
-};
+<!-- DONNÉES -->
+<div id="donnees" class="page">
+  <div class="page-title">Données</div>
+  <div class="page-sub">Export / Import de la progression AMRAP</div>
+  <div class="tc">
+    <div class="tc-title">Exporter</div>
+    <button class="cbtn cbtn-main" style="width:100%;margin-bottom:14px" onclick="exportData()">⬇ Exporter la progression</button>
+  </div>
+  <div class="tc">
+    <div class="tc-title">Importer</div>
+    <button class="cbtn cbtn-main" style="width:100%;background:var(--blue)" onclick="importData()">⬆ Importer une sauvegarde</button>
+  </div>
+  <div class="tc">
+    <div class="tc-title" style="color:var(--red)">Réinitialiser</div>
+    <div class="tc-sub">Efface toute la progression (les 4 mouvements + historique).</div>
+    <button class="cbtn cbtn-main" style="width:100%;background:var(--red)" onclick="resetAll()">🗑 Réinitialiser toute la progression</button>
+  </div>
+</div>
 
-function setSem(n,btn){
-  document.querySelectorAll('.sem-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  const d=D[n];
-  const m={
-    'u1-s':d.s,'u1-bo':d.bo,'u1-chin':d.chin,'u1-band':d.band,'u1-hammer':d.hammer,'u1-tl':d.tl,'u1-ec':d.ec,'u1-curl':d.curl,'u1-elev':d.elev,
-    'u2-mil':d.u2mil,'u2-trac':d.u2trac,'u2-band':d.u2band,'u2-bench':d.u2bench,'u2-th':d.u2th,'u2-ext':d.u2ext,'u2-curl':d.u2curl,'u2-rpd':d.u2rpd,'u2-elev':d.u2elev,'u2-elev-note':d.u2elevn,
-    'l1-sq':d.lsq,'l1-bo':d.lbo,'l1-bo-note':d.lbon,'l1-jt':d.ljt,'l1-mol':d.lmol,'l1-pend':d.lpend,'l1-lc':d.llc,'l1-ext':d.lext,'l1-ab':d.lab,
-    'l2-dl':d.dl,'l2-bo-note':d.dlbo,'l2-mol':d.l2mol,'l2-sq':d.l2sq,'l2-sq-note':d.l2sqn,'l2-shrug':d.shrug,'l2-row':d.row,'l2-ab':d.l2ab
-  };
-  for(const[k,v] of Object.entries(m)){const el=document.getElementById(k);if(el)el.textContent=v;}
-  document.getElementById('l1-sq-note').innerHTML=`<span class="rir">${d.lsqr}</span>`;
-  document.getElementById('u2-mil-note').innerHTML=`2×6 — <span class="rir">${d.u2rir}</span>`;
-  document.getElementById('l2-dl-note').textContent=d.dln;
+<!-- MODALE CONFIRMATION -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-text" id="modal-text"></div>
+    <div class="btn-row">
+      <button class="cbtn cbtn-sec" onclick="closeModal()">Annuler</button>
+      <button class="cbtn cbtn-main" id="modal-ok-btn" style="background:var(--red)">Confirmer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const MOVES = [
+  {id:'bench', name:'Bench Press', sub:'Upper 1 · Faisceau sternal', inc:2.5},
+  {id:'militaire', name:'Militaire Smith', sub:'Upper 2 · Faisceau antérieur', inc:2.5},
+  {id:'squat', name:'Smith Squat', sub:'Lower 1', inc:5},
+  {id:'blockpull', name:'Block Pull', sub:'Lower 2', inc:5}
+];
+
+function migrate(data){
+  MOVES.forEach(m => {
+    if(!data[m.id]) data[m.id] = {base:null, week:1, history:[]};
+    const d = data[m.id];
+    if(d.oneRM !== undefined){
+      d.base = d.oneRM ? roundTo(d.oneRM*0.7, 2.5) : null;
+      delete d.oneRM;
+    }
+    if(d.base === undefined) d.base = null;
+    if(d.week === undefined) d.week = 1;
+    if(!d.history) d.history = [];
+  });
+  return data;
+}
+
+function loadData(){
+  const raw = localStorage.getItem('bt_progression');
+  let data = {};
+  if(raw){ try{ data = JSON.parse(raw); }catch(e){ data = {}; } }
+  return migrate(data);
+}
+function saveData(data){ localStorage.setItem('bt_progression', JSON.stringify(data)); }
+
+function roundTo(v, step){ return Math.round(v/step)*step; }
+
+function computeWeights(base, week, inc){
+  const top = roundTo(base + (week-1)*inc, 2.5);
+  const bo1 = roundTo(top*0.95, 2.5);
+  const bo2 = roundTo(top*0.90, 2.5);
+  return {top, bo1, bo2};
+}
+
+let DATA = loadData();
+
+let modalCallback = null;
+function customConfirm(msg, onConfirm){
+  document.getElementById('modal-text').textContent = msg;
+  modalCallback = onConfirm;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal(){
+  document.getElementById('modal-overlay').classList.remove('open');
+  modalCallback = null;
+}
+document.getElementById('modal-ok-btn').addEventListener('click', function(){
+  const cb = modalCallback;
+  closeModal();
+  if(cb) cb();
+});
+
+function renderMoves(){
+  const el = document.getElementById('moves');
+  el.innerHTML = MOVES.map(m => {
+    const d = DATA[m.id];
+    if(d.base === null){
+      const lastTop = d.history.length ? d.history[d.history.length-1].topW : null;
+      const suggestion = lastTop ? roundTo(lastTop*0.7, 2.5) : null;
+      return `<div class="move-card">
+        <div class="move-hdr"><div><div class="move-name">${m.name}</div><div class="move-inc">${m.sub}</div></div></div>
+        ${suggestion ? `<div style="font-size:11px;color:var(--muted);margin-bottom:8px">💡 Dernier top set validé : ${lastTop}kg → reprise suggérée ~${suggestion}kg</div>` : ''}
+        <div class="setup-row">
+          <div class="ig"><label>Top set actuel (kg)</label><input type="number" step="2.5" id="setup-top-${m.id}" placeholder="ex: 95"></div>
+          <div class="ig"><label>Semaine</label><input type="number" step="1" min="1" id="setup-week-${m.id}" placeholder="1" value="1"></div>
+        </div>
+        <button class="cbtn cbtn-main" style="width:100%" onclick="startCycle('${m.id}')">Démarrer le cycle</button>
+      </div>`;
+    }
+    const w = computeWeights(d.base, d.week, m.inc);
+    const lastSession = d.history[d.history.length-1];
+    const isCluster = lastSession && lastSession.topR <= 3;
+    return `<div class="move-card">
+      <div class="move-hdr">
+        <div><div class="move-name">${m.name}</div><div class="move-inc">${m.sub} · +${m.inc}kg/sem</div></div>
+        ${isCluster ? '<span class="cluster-badge">Cluster</span>' : ''}
+      </div>
+      <div class="week-info">Semaine <b>${d.week}</b> · Top set théorique <b>${w.top}kg</b></div>
+      <table class="set-table">
+        <tr><th>Série</th><th>Poids</th><th>Reps AMRAP</th></tr>
+        <tr><td>Top set</td><td class="weight-disp"><input type="number" step="0.5" id="w-top-${m.id}" value="${w.top}"></td><td><input type="number" id="r-top-${m.id}" min="0" placeholder="reps"></td></tr>
+        <tr><td>Back-off 1 (-5%)</td><td class="weight-disp"><input type="number" step="0.5" id="w-bo1-${m.id}" value="${w.bo1}"></td><td><input type="number" id="r-bo1-${m.id}" min="0" placeholder="reps"></td></tr>
+        <tr><td>Back-off 2 (-10%)</td><td class="weight-disp"><input type="number" step="0.5" id="w-bo2-${m.id}" value="${w.bo2}"></td><td><input type="number" id="r-bo2-${m.id}" min="0" placeholder="reps"></td></tr>
+      </table>
+      <div class="btn-row">
+        <button class="cbtn cbtn-main" onclick="validateSession('${m.id}')">✅ Valider — semaine suivante</button>
+        <button class="cbtn cbtn-sec" onclick="newCycle('${m.id}')">🔄 Nouveau cycle</button>
+      </div>
+      <div class="history-toggle" onclick="toggleHist('${m.id}')">Historique (${d.history.length}) ▾</div>
+      <div class="history-list" id="hist-${m.id}">
+        ${d.history.length ? d.history.map((h,i)=>({h,i})).reverse().map(o => `
+          <div class="hrow">
+            <div style="flex:1;display:flex;justify-content:space-between;gap:8px">
+              <span>S${o.h.week} · ${o.h.date}</span>
+              <span class="hrow-r">Top <b>${o.h.topW}kg×${o.h.topR}</b> · BO1 ${o.h.bo1W}×${o.h.bo1R} · BO2 ${o.h.bo2W}×${o.h.bo2R}</span>
+            </div>
+            <button class="hrow-del" onclick="deleteHistEntry('${m.id}',${o.i})">×</button>
+          </div>`).join('') : '<div class="empty">Aucune séance enregistrée</div>'}
+      </div>
+      <div class="move-reset" onclick="resetMove('${m.id}')">🗑 Réinitialiser ce mouvement</div>
+    </div>`;
+  }).join('');
+}
+
+function startCycle(id){
+  const m = MOVES.find(x=>x.id===id);
+  const topVal = parseFloat(document.getElementById('setup-top-'+id).value);
+  const weekVal = parseInt(document.getElementById('setup-week-'+id).value) || 1;
+  if(!topVal) return;
+  DATA[id] = {base: roundTo(topVal - (weekVal-1)*m.inc, 2.5), week: weekVal, history: DATA[id].history || []};
+  saveData(DATA);
+  renderMoves();
+}
+
+function validateSession(id){
+  const wTop = parseFloat(document.getElementById('w-top-'+id).value);
+  const wBo1 = parseFloat(document.getElementById('w-bo1-'+id).value);
+  const wBo2 = parseFloat(document.getElementById('w-bo2-'+id).value);
+  const rTop = parseInt(document.getElementById('r-top-'+id).value);
+  const rBo1 = parseInt(document.getElementById('r-bo1-'+id).value);
+  const rBo2 = parseInt(document.getElementById('r-bo2-'+id).value);
+  if(isNaN(rTop)){ alert('Renseigne au moins les reps du top set'); return; }
+  const d = DATA[id];
+  d.history.push({
+    week: d.week, date: new Date().toLocaleDateString('fr'),
+    topW: wTop, topR: rTop,
+    bo1W: wBo1, bo1R: isNaN(rBo1)?0:rBo1,
+    bo2W: wBo2, bo2R: isNaN(rBo2)?0:rBo2
+  });
+  d.week++;
+  saveData(DATA);
+  renderMoves();
+}
+
+function newCycle(id){
+  customConfirm('Démarrer un nouveau cycle ? Tu vas pouvoir resaisir le top set de départ et la semaine. L\'historique est conservé.', function(){
+    DATA[id] = {base:null, week:1, history: DATA[id].history};
+    saveData(DATA);
+    renderMoves();
+  });
+}
+
+function deleteHistEntry(id, idx){
+  customConfirm('Supprimer cette séance de l\'historique ?', function(){
+    DATA[id].history.splice(idx,1);
+    saveData(DATA);
+    renderMoves();
+  });
+}
+
+function resetMove(id){
+  customConfirm('Réinitialiser ce mouvement ? Le top set, la semaine ET tout l\'historique seront effacés.', function(){
+    DATA[id] = {base:null, week:1, history:[]};
+    saveData(DATA);
+    renderMoves();
+  });
+}
+
+function resetAll(){
+  customConfirm('Tout réinitialiser ? La progression des 4 mouvements et tout l\'historique seront effacés.', function(){
+    MOVES.forEach(m => DATA[m.id] = {base:null, week:1, history:[]});
+    saveData(DATA);
+    renderMoves();
+  });
+}
+
+function toggleHist(id){
+  document.getElementById('hist-'+id).classList.toggle('open');
 }
 
 function tog(hdr){
-  const b=hdr.nextElementSibling,c=hdr.querySelector('.chev');
+  const b = hdr.nextElementSibling;
+  const c = hdr.querySelector('.chev');
   b.classList.toggle('open');
-  c.style.transform=b.classList.contains('open')?'rotate(90deg)':'';
+  c.style.transform = b.classList.contains('open') ? 'rotate(90deg)' : '';
 }
 
-function showPage(id,btn){
+function showPage(id, btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
-  if(id==='topset')renderSBDChart();
 }
 
-let hist=JSON.parse(localStorage.getItem('ts_h')||'[]');
-
-let sbdChart=null;
-
-function renderSBDChart(){
-  const bench=hist.filter(h=>h.mvt==='Bench Press').reverse();
-  const squat=hist.filter(h=>h.mvt==='Squat').reverse();
-  const dead=hist.filter(h=>h.mvt==='Deadlift').reverse();
-  const hasData=bench.length||squat.length||dead.length;
-  const empty=document.getElementById('sbd-empty');
-  const canvas=document.getElementById('sbd-chart');
-  if(!hasData){if(empty)empty.style.display='block';if(canvas)canvas.style.display='none';return;}
-  if(empty)empty.style.display='none';
-  if(canvas)canvas.style.display='block';
-
-  // Toutes les dates uniques triées
-  const allDates=[...new Set([...bench,...squat,...dead].map(h=>h.date))].sort((a,b)=>{
-    const pa=a.split('/').reverse().join('-'),pb=b.split('/').reverse().join('-');
-    return pa.localeCompare(pb);
-  });
-
-  // Pour chaque date, prendre le max du mouvement ce jour là
-  function byDate(arr){
-    const map={};
-    arr.forEach(h=>{if(!map[h.date]||h.rm>map[h.date])map[h.date]=h.rm;});
-    return allDates.map(d=>map[d]||null);
-  }
-
-  setTimeout(()=>{
-    const ctx=document.getElementById('sbd-chart');
-    if(!ctx)return;
-    if(sbdChart){sbdChart.destroy();sbdChart=null;}
-    sbdChart=new Chart(ctx,{
-      type:'line',
-      data:{
-        labels:allDates,
-        datasets:[
-          {label:'Bench',data:byDate(bench),borderColor:'#e63946',backgroundColor:'rgba(230,57,70,0.06)',pointBackgroundColor:'#e63946',pointRadius:4,tension:0.3,fill:false,borderWidth:2,spanGaps:true},
-          {label:'Squat',data:byDate(squat),borderColor:'#e9c46a',backgroundColor:'rgba(233,196,106,0.06)',pointBackgroundColor:'#e9c46a',pointRadius:4,tension:0.3,fill:false,borderWidth:2,spanGaps:true},
-          {label:'Deadlift',data:byDate(dead),borderColor:'#457b9d',backgroundColor:'rgba(69,123,157,0.06)',pointBackgroundColor:'#457b9d',pointRadius:4,tension:0.3,fill:false,borderWidth:2,spanGaps:true}
-        ]
-      },
-      options:{
-        responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{display:false}},
-        scales:{
-          x:{ticks:{font:{size:9},maxRotation:40,maxTicksLimit:8,color:'#888'},grid:{display:false}},
-          y:{ticks:{font:{size:10},color:'#888'},grid:{color:'rgba(128,128,128,0.1)'}}
-        }
-      }
-    });
-  },100);
+function exportData(){
+  const blob = new Blob([JSON.stringify({progression:DATA},null,2)],{type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'bt_progression_'+new Date().toISOString().split('T')[0]+'.json';
+  a.click();
 }
 
-function calcRM(){
-  const kg=parseFloat(document.getElementById('rm-kg').value);
-  const reps=parseInt(document.getElementById('rm-reps').value);
-  const rir=parseInt(document.getElementById('rm-rir').value);
-  const mvt=document.getElementById('rm-mvt').value;
-  if(!kg||!reps)return;
-  const rm=Math.round((kg*(1+(reps+rir)/30))*2)/2;
-  document.getElementById('r-main').innerHTML=`<span>1RM estimé — ${mvt}</span><strong style="font-size:32px;color:var(--red)">${rm} kg</strong>`;
-  document.getElementById('rbox').classList.add('show');
-  hist.unshift({mvt,kg,reps,rir,rm,date:new Date().toLocaleDateString('fr')});
-  if(hist.length>50)hist.pop();
-  localStorage.setItem('ts_h',JSON.stringify(hist));
-  renderHist();
-  renderSBDChart();
-}
-
-function exportTS(){
-  const data=JSON.stringify({topset:hist},null,2);
-  const blob=new Blob([data],{type:'application/json'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url;a.download='bt_topset_'+new Date().toISOString().split('T')[0]+'.json';
-  a.click();URL.revokeObjectURL(url);
-}
-
-function importTS(){
-  const input=document.createElement('input');
+function importData(){
+  const input = document.createElement('input');
   input.type='file';input.accept='.json';
-  input.onchange=function(e){
-    const file=e.target.files[0];if(!file)return;
-    const reader=new FileReader();
-    reader.onload=function(ev){
+  input.onchange = e => {
+    const reader = new FileReader();
+    reader.onload = ev => {
       try{
-        const p=JSON.parse(ev.target.result);
-        if(!p.topset){alert('Fichier invalide');return;}
-        if(!confirm('Restaurer ? L\'historique actuel sera remplacé.'))return;
-        hist=p.topset;
-        localStorage.setItem('ts_h',JSON.stringify(hist));
-        renderHist();
-        renderSBDChart();
-        alert('Restauré — '+hist.length+' entrées');
+        const p = JSON.parse(ev.target.result);
+        if(!p.progression){alert('Fichier invalide');return;}
+        customConfirm('Restaurer ? Les données actuelles seront remplacées.', function(){
+          DATA = migrate(p.progression);
+          saveData(DATA);
+          renderMoves();
+          alert('Restauré');
+        });
       }catch(e){alert('Erreur de lecture');}
-    };reader.readAsText(file);
-  };input.click();
+    };
+    reader.readAsText(e.target.files[0]);
+  };
+  input.click();
 }
 
-function renderHist(){
-  const el=document.getElementById('hist');
-  if(!hist.length){el.innerHTML='<div class="empty">Aucun top set enregistré</div>';return;}
-  el.innerHTML=hist.map((h,i)=>`<div class="hi"><div><div class="hi-n">${h.mvt}</div><div class="hi-d">${h.kg}kg × ${h.reps}r · RIR ${h.rir} · ${h.date}</div></div><div style="display:flex;align-items:center;gap:8px"><div class="hi-v">${h.rm}kg</div><button class="hi-x" onclick="delH(${i})">×</button></div></div>`).join('');
-}
-
-function delH(i){hist.splice(i,1);localStorage.setItem('ts_h',JSON.stringify(hist));renderHist();}
-
-setSem(1,document.querySelector('.sem-btn'));
-renderHist();
-renderSBDChart();
+renderMoves();
 </script>
 </body>
 </html>
