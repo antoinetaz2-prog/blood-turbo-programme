@@ -391,26 +391,20 @@ function htmlPdeB() {
   var h = '';
   h += '<div class="card"><div class="card-hdr" onclick="tog(this)">'
     + '<div class="card-title">⚡ ROWING SUPINATION × SHRUG — RAMP UP 5×5</div>'
-    + '<div style="display:flex;gap:4px"><span class="tag t-ss" style="font-size:9px">SS</span><span class="tag t-ramp" style="font-size:9px">RAMP</span></div>'
+    + '<div style="display:flex;gap:4px"><span class="tag t-ss" style="font-size:9px">SS</span><span class="tag t-lourd" style="font-size:9px">LOURD</span><span class="tag t-ramp" style="font-size:9px">RAMP</span></div>'
     + '<span class="chev">›</span></div>'
     + '<div class="card-body"><div class="grp">'
-    + rampBox('rowing_sup', 'Rowing Supination × Shrug en superset · top set +2.5kg à chaque expo')
+    + rampBox('rowing_sup', 'Rowing Supination × Shrug en superset · lourd · top set +2.5kg à chaque expo')
     + '<div class="bracket-lourd" style="margin-top:8px">'
-    + exoHtml('Rowing Supination','Dos épaisseur · chef long biceps · superset avec Shrug','5×5','ramp','c-lourd')
-    + exoHtml('Shrug','Trapèzes supérieurs · superset avec Rowing','5×5','ramp','c-lourd')
+    + exoHtml('Rowing Supination','Dos épaisseur · chef long biceps · superset avec Shrug','4-6s','ramp','c-lourd')
+    + exoHtml('Shrug','Trapèzes supérieurs · superset avec Rowing','4-6s','ramp','c-lourd')
     + '</div>'
     + '</div></div></div>';
+  h += blocHtml('🎯 DÉVELOPPÉ MILITAIRE MACHINE — LÉGER', [{cls:'t-leger',txt:'LÉGER'}], '',
+    exoHtml('Développé Militaire Machine','Faisceau antérieur épaule · isolation guidée','3-5s','12-20','c-leger'));
   h += blocHtml('🎯 PEC DECK UNI × REVERSE PEC — SS', [{cls:'t-ss',txt:'SS'},{cls:'t-leger',txt:'ALT'}], 'bracket-leger',
-    exoHtml('Pec Deck Uni','Pecs · léger sem 1 / lourd sem 2','4-7s','12-20 / 6-10','c-leger') +
-    exoHtml('Reverse Pec Uni','Épaule post. · léger sem 1 / lourd sem 2','4-7s','12-20 / 6-10','c-leger'));
-  h += '<div class="card"><div class="card-hdr" onclick="tog(this)">'
-    + '<div class="card-title">🟢 SÉRIE DE 100 — FIXE</div>'
-    + '<span class="tag t-neutre" style="font-size:9px">FIXE</span>'
-    + '<span class="chev">›</span></div>'
-    + '<div class="card-body"><div class="grp">'
-    + '<div class="s100"><div class="s100-lbl">🟢 Leg Curl — série de 100</div>'
-    + '<div class="detail" style="color:var(--green);font-style:normal">Toujours sur séance B · quel que soit le pattern</div></div>'
-    + '</div></div></div>';
+    exoHtml('Pec Deck Uni','Pecs · léger sem 1 / lourd sem 2','3-5s','12-20 / 6-10','c-leger') +
+    exoHtml('Reverse Pec Uni','Épaule post. · léger sem 1 / lourd sem 2','3-5s','12-20 / 6-10','c-leger'));
   return h;
 }
 
@@ -591,7 +585,7 @@ var DEX = {
   'BRAS 2': ['Magic Triceps','Curl Larry Scott','Reverse Curl','Extension Poignet','Flexion / Extension Cou Lesté','Circuit Abdos'],
   'BRAS 3': ['Pinwheel Curl','Reverse Curl Triché','Flexion Avant-bras','Traction Supination PDC','Extension Triceps Corde','Flexion / Extension Cou Lesté'],
   'PEC/DOS/ÉP A': ['Préfatigue Câble Uni','Développé Incliné Smith','Tirage Vertical Uni Poulie','Élév. Latérale Uni Poulie'],
-  'PEC/DOS/ÉP B': ['Rowing Supination','Shrug','Pec Deck Uni','Reverse Pec Uni','Leg Curl série 100'],
+  'PEC/DOS/ÉP B': ['Rowing Supination','Shrug','Développé Militaire Machine','Pec Deck Uni','Reverse Pec Uni'],
   'PEC/DOS/ÉP C': ['Floor Press','Tirage Horizontal Uni','Élév. Frontales','Rowing Mentons'],
   'JAMBES A': ['Adducteurs','Leg Curl Allongé','Block Pull','Squat Smith','Relevé de Tibia','Leg Extension Uni','Mollet Presse','Crunch Poulie','Toes to Bar'],
   'JAMBES B': ['Adducteurs','Squat Smith','Relevé de Tibia','Leg Curl Allongé','Relevé de Buste Lesté','Leg Extension Uni','Mollet Presse','Crunch Poulie','Toes to Bar'],
@@ -620,7 +614,22 @@ function showPage(id) {
 }
 
 function sv() { try { localStorage.setItem('bt_v5', JSON.stringify(db)); } catch(e) {} }
-function ld() { try { var r = localStorage.getItem('bt_v5'); if (r) db = JSON.parse(r); } catch(e) {} }
+function ld() {
+  try {
+    var r = localStorage.getItem('bt_v5');
+    if (r) { db = JSON.parse(r); return; }
+    // Migration depuis v4 si jamais migré
+    var old = localStorage.getItem('bt_v4');
+    if (old) {
+      var op = JSON.parse(old);
+      if (op && op.sessions) {
+        db = { sessions: op.sessions, customEx: op.customEx || {} };
+        sv();
+        toast('Historique v4 récupéré (' + op.sessions.length + ' séances)');
+      }
+    }
+  } catch(e) {}
+}
 function svDraft() {
   try {
     var d = document.getElementById('s-date');
