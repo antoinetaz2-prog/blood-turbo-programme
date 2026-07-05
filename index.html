@@ -65,6 +65,7 @@ body{display:flex;flex-direction:column;max-width:480px;margin:0 auto;}
 .exo-n.c-lourd{color:var(--red);font-weight:700}
 .exo-n.c-leger{color:var(--cyan)}
 .exo-n.c-green{color:var(--green);font-weight:700}
+.exo-n.c-gold{color:var(--gold);font-weight:700}
 .exo-p{font-size:12px;color:var(--orange);font-weight:700;white-space:nowrap;text-align:right;min-width:72px}
 .detail{font-size:11px;color:#555;font-style:italic;margin-top:2px}
 .bracket-lourd{border-left:2px solid var(--red);margin-left:4px;padding-left:8px}
@@ -389,22 +390,23 @@ function htmlPdeA() {
 
 function htmlPdeB() {
   var h = '';
+  h += blocHtml('🏋️ SHRUG BARRE', [{cls:'t-lourd',txt:'LOURD'}], '',
+    exoHtml('Shrug Barre','Trapèzes supérieurs · classique','3-5s','6-10','c-lourd'));
   h += '<div class="card"><div class="card-hdr" onclick="tog(this)">'
-    + '<div class="card-title">⚡ ROWING SUPINATION × SHRUG — RAMP UP 5×5</div>'
-    + '<div style="display:flex;gap:4px"><span class="tag t-ss" style="font-size:9px">SS</span><span class="tag t-lourd" style="font-size:9px">LOURD</span><span class="tag t-ramp" style="font-size:9px">RAMP</span></div>'
+    + '<div class="card-title">⚡ ROWING SUPINATION — RAMP UP 5×5 → POST-FATIGUE</div>'
+    + '<div style="display:flex;gap:4px"><span class="tag t-lourd" style="font-size:9px">LOURD</span><span class="tag t-ramp" style="font-size:9px">RAMP</span></div>'
     + '<span class="chev">›</span></div>'
     + '<div class="card-body"><div class="grp">'
-    + rampBox('rowing_sup', 'Rowing Supination × Shrug en superset · lourd · top set +2.5kg à chaque expo')
-    + '<div class="bracket-lourd" style="margin-top:8px">'
-    + exoHtml('Rowing Supination','Dos épaisseur · chef long biceps · superset avec Shrug','4-6s','ramp','c-lourd')
-    + exoHtml('Shrug','Trapèzes supérieurs · superset avec Rowing','4-6s','ramp','c-lourd')
+    + rampBox('rowing_sup', 'Dernier palier (100%) enchaîné SANS repos avec Élév. Latérales Penchées · top set +2.5kg à chaque expo')
+    + '<div class="bracket-gold" style="margin-top:8px">'
+    + exoHtml('Rowing Supination','Dos épaisseur · chef long biceps','5×5','ramp','c-lourd')
+    + exoHtml('Élév. Latérales Penchées — POST-FATIGUE','Enchaînée directement après le dernier palier du rowing · aucun repos','5s','8-15','c-gold')
     + '</div>'
     + '</div></div></div>';
-  h += blocHtml('🎯 DÉVELOPPÉ MILITAIRE MACHINE — LÉGER', [{cls:'t-leger',txt:'LÉGER'}], '',
-    exoHtml('Développé Militaire Machine','Faisceau antérieur épaule · isolation guidée','3-5s','12-20','c-leger'));
-  h += blocHtml('🎯 PEC DECK UNI × REVERSE PEC — SS', [{cls:'t-ss',txt:'SS'},{cls:'t-leger',txt:'ALT'}], 'bracket-leger',
-    exoHtml('Pec Deck Uni','Pecs · léger sem 1 / lourd sem 2','3-5s','12-20 / 6-10','c-leger') +
-    exoHtml('Reverse Pec Uni','Épaule post. · léger sem 1 / lourd sem 2','3-5s','12-20 / 6-10','c-leger'));
+  h += blocHtml('🎯 DÉVELOPPÉ MILITAIRE', [{cls:'t-neutre',txt:'—'}], '',
+    exoHtml('Développé Militaire','Faisceau antérieur épaule','3s','8-12',''));
+  h += blocHtml('🎯 PEC DECK UNI', [{cls:'t-leger',txt:'LÉGER'}], '',
+    exoHtml('Pec Deck Uni','Pecs · isolation','3-5s','12-20','c-leger'));
   return h;
 }
 
@@ -585,7 +587,7 @@ var DEX = {
   'BRAS 2': ['Magic Triceps','Curl Larry Scott','Reverse Curl','Extension Poignet','Flexion / Extension Cou Lesté','Circuit Abdos'],
   'BRAS 3': ['Pinwheel Curl','Reverse Curl Triché','Flexion Avant-bras','Traction Supination PDC','Extension Triceps Corde','Flexion / Extension Cou Lesté'],
   'PEC/DOS/ÉP A': ['Préfatigue Câble Uni','Développé Incliné Smith','Tirage Vertical Uni Poulie','Élév. Latérale Uni Poulie'],
-  'PEC/DOS/ÉP B': ['Rowing Supination','Shrug','Développé Militaire Machine','Pec Deck Uni','Reverse Pec Uni'],
+  'PEC/DOS/ÉP B': ['Shrug Barre','Rowing Supination','Élév. Latérales Penchées','Développé Militaire','Pec Deck Uni'],
   'PEC/DOS/ÉP C': ['Floor Press','Tirage Horizontal Uni','Élév. Frontales','Rowing Mentons'],
   'JAMBES A': ['Adducteurs','Leg Curl Allongé','Block Pull','Squat Smith','Relevé de Tibia','Leg Extension Uni','Mollet Presse','Crunch Poulie','Toes to Bar'],
   'JAMBES B': ['Adducteurs','Squat Smith','Relevé de Tibia','Leg Curl Allongé','Relevé de Buste Lesté','Leg Extension Uni','Mollet Presse','Crunch Poulie','Toes to Bar'],
