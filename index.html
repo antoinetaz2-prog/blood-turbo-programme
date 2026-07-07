@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Blood & Turbo">
-<title>Blood & Turbo</title>
+<meta name="apple-mobile-web-app-title" content="PPL">
+<title>PPL</title>
 <style>
 :root{
   --bg:#0a0a10;--surface:#12121e;--bg2:#12121e;--bg3:#1a1a28;--card:#1a1a28;--border:#252535;
@@ -133,7 +133,7 @@ body{display:flex;flex-direction:column;max-width:480px;margin:0 auto;}
 </head>
 <body>
 <div class="hdr">
-  <div><div class="ht">BLOOD &amp; TURBO</div><div class="hs">TURBOTROPHIE · FOCUS BRAS</div></div>
+  <div><div class="ht">PPL</div><div class="hs">FOCUS BRAS</div></div>
   <div style="display:flex;align-items:center;gap:10px">
     <div id="hdr-date" style="font-size:11px;color:var(--text2)"></div>
     <button onclick="showPage('donnees')" style="background:none;border:none;color:var(--text2);font-size:20px;cursor:pointer;padding:2px 4px;line-height:1">⚙️</button>
@@ -146,8 +146,8 @@ body{display:flex;flex-direction:column;max-width:480px;margin:0 auto;}
 </nav>
 
 <div id="prog" class="page active">
-  <div class="page-title">Blood & Turbo</div>
-  <div class="page-sub">Turbotrophie-Bras · 6 séances · 2on/1off</div>
+  <div class="page-title">PPL</div>
+  <div class="page-sub">Focus Bras</div>
   <div class="cycle-banner">
     <div class="cycle-info">
       <div class="cycle-label">Séance en cours — <span id="cycle-pos"></span></div>
@@ -313,43 +313,40 @@ function blocHtml(titre, tags, bracketClass, innerHtml) {
 
 function htmlPushA() {
   var h = '';
-  h += '<div class="card"><div class="card-hdr" onclick="tog(this)">'
-    + '<div class="card-title">⚡ FLOOR PRESS × PINWHEEL CURL — RAMP UP 5×5</div>'
-    + '<div style="display:flex;gap:4px"><span class="tag t-ss" style="font-size:9px">SS</span><span class="tag t-ramp" style="font-size:9px">RAMP</span></div>'
-    + '<span class="chev">›</span></div>'
-    + '<div class="card-body"><div class="grp">'
-    + rampBox('pushA_floorpress', 'Floor Press · top set +2.5kg à chaque expo')
-    + '<div class="bracket-gold" style="margin-top:8px">'
-    + exoHtml('Floor Press','Pecs · triceps · superset avec Pinwheel Curl','5s','6-10','c-lourd')
-    + exoHtml('Pinwheel Curl','Brachial · chef long biceps · superset','5s','6-10','c-lourd')
-    + '</div></div></div></div>';
-  h += blocHtml('🏋️ PRESSE VERTICALE HAMMER × CURL LARRY SCOTT UNI — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
-    exoHtml('Presse Verticale Hammer','Épaule antérieure','2-3s','8-12','') +
-    exoHtml('Curl Larry Scott Uni','Biceps isolation','2-3s','8-12','c-leger'));
+  h += blocHtml('🏋️ FLOOR PRESS × PINWHEEL CURL — SS', [{cls:'t-ss',txt:'SS'},{cls:'t-lourd',txt:'LOURD'}], 'bracket-lourd',
+    exoHtml('Floor Press','Pecs · triceps · superset avec Pinwheel Curl','2-3s','6-10','c-lourd') +
+    exoHtml('Pinwheel Curl','Brachial · chef long biceps · superset','2-3s','6-10','c-lourd'));
+  h += blocHtml('🏋️ PRESSE PECS HAMMER UNILATÉRAL × CURL LARRY SCOTT — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
+    exoHtml('Presse Pecs Hammer Unilatéral','Pecs · un bras à la fois','2-3s','8-12','') +
+    exoHtml('Curl Larry Scott','Biceps isolation · classique','2-3s','8-12','c-leger'));
   h += blocHtml('🦾 DIPS × CURL INCLINÉ — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
     exoHtml('Dips','Triceps · pecs bas','2-3s','8-12','') +
     exoHtml('Curl Incliné','Biceps · étirement maximal','2-3s','8-12','c-leger'));
   h += blocHtml('💪 BICEPS CORDE POULIE × TRICEPS EXTENSION POULIE — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
     exoHtml('Biceps Corde Poulie','Biceps · tension continue','2-3s','8-12','c-leger') +
     exoHtml('Triceps Extension Poulie','Triceps · contraction','2-3s','8-12','c-leger'));
-  h += blocHtml('🎯 ÉLÉVATIONS FRONTALES', [{cls:'t-neutre',txt:'—'}], '',
-    exoHtml('Élévations Frontales','Faisceau antérieur épaule','2-3s','8-12',''));
+  h += blocHtml('🎯 ÉLÉV. FRONTALES × EXTENSION COU × FLEXION COU — TRISET', [{cls:'t-ss',txt:'TRISET'}], 'bracket-gold',
+    exoHtml('Élévations Frontales','Faisceau antérieur épaule','2-3s','8-12','') +
+    exoHtml('Extension Cou Lestée','Extenseurs nuque · charge','2-3s','8-12','') +
+    exoHtml('Flexion Cou Lestée','Fléchisseurs nuque · charge','2-3s','8-12',''));
   return h;
 }
 
 function htmlPushB() {
   var h = '';
-  h += blocHtml('🏋️ DÉVELOPPÉ INCLINÉ SMITH × REVERSE CURL — SS', [{cls:'t-ss',txt:'SS'},{cls:'t-lourd',txt:'LOURD'}], 'bracket-lourd',
+  h += blocHtml('🏋️ DÉVELOPPÉ INCLINÉ SMITH × CURL POULIE CHEF COURT — SS', [{cls:'t-ss',txt:'SS'},{cls:'t-lourd',txt:'LOURD'}], 'bracket-lourd',
     exoHtml('Développé Incliné Smith','Faisceau claviculaire','2-3s','6-10','c-lourd') +
-    exoHtml('Reverse Curl','Avant-bras · brachioradial','2-3s','6-10','c-lourd'));
-  h += blocHtml('🎯 DÉVELOPPÉ MILITAIRE SMITH × CURL HALTÈRE — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
-    exoHtml('Développé Militaire Smith','Faisceau antérieur épaule','2-3s','8-12','') +
-    exoHtml('Curl Haltère','Biceps · classique','2-3s','8-12','c-leger'));
-  h += blocHtml('🦾 MAGIC TRICEPS × PREACHER CURL — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
+    exoHtml('Curl Poulie Chef Court','Biceps · coudes reculés · focus chef court','2-3s','8-12','c-lourd'));
+  h += blocHtml('🎯 DÉVELOPPÉ MILITAIRE SMITH', [{cls:'t-neutre',txt:'—'}], '',
+    exoHtml('Développé Militaire Smith','Faisceau antérieur épaule','2-3s','8-12',''));
+  h += blocHtml('🦾 MAGIC TRICEPS × REVERSE CURL — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
     exoHtml('Magic Triceps','Triceps · chef long · amplitude maximale','2-3s','8-12','') +
-    exoHtml('Preacher Curl','Biceps · étirement pupitre','2-3s','8-12','c-leger'));
-  h += blocHtml('🦾 DIPS PDC', [{cls:'t-neutre',txt:'MAX'}], '',
-    exoHtml('Dips PDC','Poids de corps · max reps','3×','max',''));
+    exoHtml('Reverse Curl','Avant-bras · brachioradial','2-3s','8-12','c-leger'));
+  h += blocHtml('🎯 PEC DECK UNI', [{cls:'t-leger',txt:'LÉGER'}], '',
+    exoHtml('Pec Deck Uni','Pecs · isolation','2-3s','12-20','c-leger'));
+  h += blocHtml('🦾 DIPS × TRACTION SUPINATION PDC — SS · FOCUS BRAS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
+    exoHtml('Dips','Poids de corps · max reps','2-3s','max','') +
+    exoHtml('Traction Supination PDC','Biceps · poids de corps · focus bras','2-3s','max','c-leger'));
   return h;
 }
 
@@ -392,18 +389,16 @@ function htmlJambesA() {
   h += blocHtml('🏋️ SQUAT SMITH × TIBIA RAISES — SS', [{cls:'t-ss',txt:'SS'},{cls:'t-lourd',txt:'QUAD'}], 'bracket-lourd',
     exoHtml('Squat Smith','Quad · mouvement principal','2-3s','6-10','c-lourd') +
     exoHtml('Tibia Raises','Tibial antérieur · santé genoux','2-3s','6-10',''));
-  h += blocHtml('🚶 FENTES MARCHÉES BARRE', [{cls:'t-neutre',txt:'QUALITÉ'}], '',
-    exoHtml('Fentes Marchées Barre','Quad · fessier · environ 20 pas','2-3s','~20 pas',''));
-  h += blocHtml('🍑 HIP THRUST × MOLLET DEBOUT — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
+  h += blocHtml('🚶 FENTES BULGARES SMITH', [{cls:'t-neutre',txt:'QUALITÉ'}], '',
+    exoHtml('Fentes Bulgares Smith','Quad · fessier','2-3s','8-12',''));
+  h += blocHtml('🍑 HIP THRUST × SISSY SQUAT — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
     exoHtml('Hip Thrust','Fessier','2-3s','8-12','') +
-    exoHtml('Mollet Debout','Gastrocnémien','2-3s','15-20',''));
-  h += blocHtml('🦵 SISSY SQUAT', [{cls:'t-leger',txt:'LÉGER'}], '',
-    exoHtml('Sissy Squat','Quad · étirement maximal','1-2s','8-12','c-leger'));
-  h += blocHtml('🔲 RELEVÉ DE BUSTE LESTÉ × ABDUCTEUR — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
+    exoHtml('Sissy Squat','Quad · étirement maximal','2-3s','8-12','c-leger'));
+  h += blocHtml('🦵 MOLLET SMITH BELT SQUAT', [{cls:'t-neutre',txt:'—'}], '',
+    exoHtml('Mollet Smith Belt Squat','Gastrocnémien','3-5s','15-20',''));
+  h += blocHtml('🔲 RELEVÉ DE BUSTE LESTÉ × CRUNCH POULIE — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
     exoHtml('Relevé de Buste Lesté','Lombaires / ischios','—','10-20','') +
-    exoHtml('Abducteur','Fessier moyen','—','10-20',''));
-  h += blocHtml('💥 CRUNCH POULIE', [{cls:'t-neutre',txt:'—'}], '',
-    exoHtml('Crunch Poulie','Abdos','3s','10-20',''));
+    exoHtml('Crunch Poulie','Abdos','—','10-20',''));
   return h;
 }
 
@@ -494,10 +489,10 @@ function renderProg() {
 
 // ── SAISIE ──
 var DEX = {
-  'PUSH A': ['Floor Press','Pinwheel Curl','Presse Verticale Hammer','Curl Larry Scott Uni','Dips','Curl Incliné','Biceps Corde Poulie','Triceps Extension Poulie','Élévations Frontales'],
+  'PUSH A': ['Floor Press','Pinwheel Curl','Presse Pecs Hammer Unilatéral','Curl Larry Scott','Dips','Curl Incliné','Biceps Corde Poulie','Triceps Extension Poulie','Élévations Frontales','Extension Cou Lestée','Flexion Cou Lestée'],
   'PULL A': ['Traction Lestée Prise Neutre','Rowing Hammer Trapèze','Élévation Oiseau Poulie','Rowing Unilatéral Poulie','Tirage Nuque Poulie','Élévation Latérale Uni'],
-  'JAMBES A': ['Adducteurs','Squat Smith','Tibia Raises','Fentes Marchées Barre','Hip Thrust','Mollet Debout','Sissy Squat','Relevé de Buste Lesté','Abducteur','Crunch Poulie'],
-  'PUSH B': ['Développé Incliné Smith','Reverse Curl','Développé Militaire Smith','Curl Haltère','Magic Triceps','Preacher Curl','Dips PDC'],
+  'JAMBES A': ['Adducteurs','Squat Smith','Tibia Raises','Fentes Bulgares Smith','Hip Thrust','Sissy Squat','Mollet Smith Belt Squat','Relevé de Buste Lesté','Crunch Poulie'],
+  'PUSH B': ['Développé Incliné Smith','Curl Poulie Chef Court','Développé Militaire Smith','Magic Triceps','Reverse Curl','Pec Deck Uni','Dips','Traction Supination PDC'],
   'PULL B': ['Tirage Vertical Uni','Pull Over Haltère Élastique','Tirage Horizontal Poulie Large','Traction PDC','Reverse Pec Deck','Élév. Latérale Haltère Incliné sur Banc'],
   'JAMBES B': ['Adducteurs','Block Pull','Leg Curl Couché','Shrug','Pendulum Squat','Tibia Raises','Mollet Presse Vertical','Leg Extension Uni','Circuit Abdos'],
   'Cardio / autre': ['Fractionné VO2max','Sortie Longue Z2','Marche Inclinée','Elliptique','Stepper','Footing Z2']
@@ -628,12 +623,18 @@ function onTypeChange() {
 }
 function renderExList() { var c = document.getElementById('ex-list'); if (!c) return; c.innerHTML = ''; curEx.forEach(function(ex, i) { if (ex) appendExBlock(c, ex, i); }); }
 
+function dispNum(idx) {
+  var n = 0;
+  for (var i = 0; i <= idx; i++) { if (curEx[i]) n++; }
+  return n;
+}
+
 function appendExBlock(container, ex, idx) {
   var exList = getExList();
   var div = document.createElement('div'); div.className = 'ex-block'; div.id = 'exb-' + idx;
   var isCustom = ex.name && !exList.includes(ex.name);
   var circuit = isCircuitExo(ex.name);
-  div.innerHTML = '<div class="ex-hdr"><span class="ex-num">Exercice ' + (idx + 1) + '</span><button class="btn-d" onclick="RemEx(' + idx + ')">Supprimer</button></div>'
+  div.innerHTML = '<div class="ex-hdr"><span class="ex-num">Exercice ' + dispNum(idx) + '</span><button class="btn-d" onclick="RemEx(' + idx + ')">Supprimer</button></div>'
     + '<div class="field" style="margin-bottom:8px"><select id="es-' + idx + '" onchange="onExSel(' + idx + ')">'
     + exList.map(function(e) { return '<option value="' + e + '"' + (ex.name === e ? ' selected' : '') + '>' + e + '</option>'; }).join('')
     + '<option value="__c__"' + (isCustom ? ' selected' : '') + '>Autre...</option></select></div>'
