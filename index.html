@@ -371,16 +371,16 @@ function htmlPullA() {
 
 function htmlPullB() {
   var h = '';
-  h += blocHtml('🏋️ TIRAGE VERTICAL UNI', [{cls:'t-neutre',txt:'—'}], '',
-    exoHtml('Tirage Vertical Uni','Dos largeur','3-4s','8-12',''));
+  h += blocHtml('🏋️ ROWING SUPINATION', [{cls:'t-neutre',txt:'—'}], '',
+    exoHtml('Rowing Supination','Dos épaisseur · chef long biceps','2-3s','8-12',''));
+  h += blocHtml('🏋️ TIRAGE HAMMER VERTICAL MACHINE HAMMER UNI', [{cls:'t-neutre',txt:'—'}], '',
+    exoHtml('Tirage Hammer Vertical Machine Hammer Uni','Dos largeur · unilatéral','2-3s','8-12',''));
   h += blocHtml('🏋️ PULL OVER HALTÈRE ÉLASTIQUE', [{cls:'t-neutre',txt:'—'}], '',
     exoHtml('Pull Over Haltère Élastique','Grand dorsal · étirement','2-3s','8-12',''));
-  h += blocHtml('🏋️ ROWING T-BAR', [{cls:'t-neutre',txt:'—'}], '',
-    exoHtml('Rowing T-Bar','Dos épaisseur','2-3s','8-12',''));
-  h += blocHtml('🎯 REVERSE PEC DECK', [{cls:'t-leger',txt:'LÉGER'}], '',
-    exoHtml('Reverse Pec Deck','Épaule postérieure','2-3s','10-20','c-leger'));
-  h += blocHtml('🎯 ÉLÉVATION LATÉRALE HALTÈRE INCLINÉ SUR BANC', [{cls:'t-leger',txt:'LÉGER'}], '',
+  h += blocHtml('🎯 ÉLÉV. LATÉRALE HALTÈRE INCLINÉ SUR BANC', [{cls:'t-leger',txt:'LÉGER'}], '',
     exoHtml('Élév. Latérale Haltère Incliné sur Banc','Faisceau moyen épaule · étirement','2-3s','10-20','c-leger'));
+  h += blocHtml('🎯 OISEAUX POULIE', [{cls:'t-leger',txt:'LÉGER'}], '',
+    exoHtml('Oiseaux Poulie','Épaule postérieure','2-3s','10-20','c-leger'));
   return h;
 }
 
@@ -484,7 +484,7 @@ var DEX = {
   'PULL A': ['Traction Lestée Prise Neutre','Rowing Hammer Trapèze','Élévation Oiseau Poulie','Rowing Unilatéral Poulie','Tirage Nuque Poulie','Élévation Latérale Uni'],
   'JAMBES A': ['Adducteurs','Squat Smith','Tibia Raises','Fentes Bulgares Smith','Hip Thrust','Sissy Squat','Mollet Smith Belt Squat','Relevé de Buste Lesté','Crunch Poulie'],
   'PUSH B': ['Développé Incliné Smith','Curl Poulie Chef Court','Développé Militaire Machine Prise Neutre','Pec Deck Uni','Magic Triceps','Reverse Curl','Dips','Traction Supination PDC','Flexion Cou','Extension Cou','Extension Poignet Avant-bras'],
-  'PULL B': ['Tirage Vertical Uni','Pull Over Haltère Élastique','Rowing T-Bar','Reverse Pec Deck','Élév. Latérale Haltère Incliné sur Banc'],
+  'PULL B': ['Rowing Supination','Tirage Hammer Vertical Machine Hammer Uni','Pull Over Haltère Élastique','Élév. Latérale Haltère Incliné sur Banc','Oiseaux Poulie'],
   'JAMBES B': ['Adducteurs','Block Pull','Leg Curl Couché','Shrug','Pendulum Squat','Tibia Raises','Mollet Presse Vertical','Leg Extension Uni','Circuit Abdos'],
   'Cardio / autre': ['Fractionné VO2max','Sortie Longue Z2','Marche Inclinée','Elliptique','Stepper','Footing Z2']
 };
