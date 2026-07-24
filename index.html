@@ -364,11 +364,11 @@ function htmlPushA() {
   h += blocHtml('🦾 DIPS × TRACTION SUPINATION — SS', [{cls:'t-ss',txt:'SS'},{cls:'t-lourd',txt:'LOURD'}], 'bracket-lourd',
     exoHtml('Dips','Triceps · pecs bas · exo central de la séance','2-3s','8-12','c-lourd','poly') +
     exoHtml('Traction Supination','Biceps · poly · superset antagoniste','2-3s','6-10','c-lourd','poly'));
-  h += blocHtml('🏋️ DÉVELOPPÉ HAMMER UNILATÉRAL × PINWHEEL CURL — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
-    exoHtml('Développé Hammer Unilatéral','Pecs · triceps · un bras à la fois · superset avec Pinwheel Curl','2-3s','6-10','','poly') +
-    exoHtml('Pinwheel Curl','Brachial · chef long biceps · superset','2-3s','6-10','c-leger','iso'));
+  h += blocHtml('🏋️ DÉVELOPPÉ COUCHÉ HALTÈRES SEMI-INCLINÉ 30° × PINWHEEL CURL — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
+    exoHtml('Développé Couché Haltères Semi-Incliné 30°','Pecs milieu-haut · amplitude contrôlée · superset avec Pinwheel Curl','1-2s','6-10','','poly') +
+    exoHtml('Pinwheel Curl','Brachial · chef long biceps · superset','1-2s','6-10','c-leger','iso'));
   h += blocHtml('🎯 PEC DECK', [{cls:'t-leger',txt:'LÉGER'}], '',
-    exoHtml('Pec Deck','Pecs · isolation · étirement/contraction','2-3s','12-20','c-leger','iso'));
+    exoHtml('Pec Deck','Pecs · isolation · étirement/contraction · dès S3, dernière série en myo-reps','1-2s','12-20','c-leger','iso'));
   h += blocHtml('🦾 BAYESIAN CURL × TRICEPS EXTENSION POULIE — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
     exoHtml('Bayesian Curl','Biceps · poulie basse · buste penché · tension étirement max','2-3s','8-12','c-leger','iso') +
     exoHtml('Triceps Extension Poulie','Triceps · contraction','2-3s','8-12','c-leger','iso'));
@@ -381,19 +381,18 @@ function htmlPushA() {
 
 function htmlPushB() {
   var h = '';
-  h += blocHtml('💪 CURL LARRY SCOTT', [{cls:'t-leger',txt:'BICEPS'}], '',
-    exoHtml('Curl Larry Scott','Biceps isolation · classique','2-3s','8-12','c-leger','iso'));
+  h += blocHtml('🏋️ DÉVELOPPÉ HAMMER UNILATÉRAL × CURL LARRY SCOTT — SS', [{cls:'t-ss',txt:'SS'},{cls:'t-lourd',txt:'LOURD'}], 'bracket-lourd',
+    exoHtml('Développé Hammer Unilatéral','Pecs · triceps · un bras à la fois','2-3s','6-10','c-lourd','poly') +
+    exoHtml('Curl Larry Scott','Biceps isolation · classique · tempo 3-2-1-2','2s','8-12','c-lourd','iso'));
+  h += blocHtml('🎯 DÉVELOPPÉ MILITAIRE MACHINE PRISE NEUTRE', [{cls:'t-neutre',txt:'ÉPAULES'}], '',
+    exoHtml('Développé Militaire Machine Prise Neutre','Faisceau antérieur épaule · dès S4, dernière série en rest-pause','2s','8-12','','poly'));
   h += blocHtml('💪 CURL INCLINÉ', [{cls:'t-leger',txt:'BICEPS'}], '',
     exoHtml('Curl Incliné','Biceps · étirement maximal','2-3s','8-12','c-leger','iso'));
-  h += blocHtml('🏋️ DÉVELOPPÉ INCLINÉ SMITH OU HALTÈRES', [{cls:'t-lourd',txt:'PECS'}], '',
-    exoHtml('Développé Incliné Smith ou Haltères','Faisceau claviculaire · choisis la variante au moment de noter la séance','2-3s','6-10','c-lourd','poly'));
-  h += blocHtml('🎯 DÉVELOPPÉ MILITAIRE MACHINE PRISE NEUTRE', [{cls:'t-neutre',txt:'ÉPAULES'}], '',
-    exoHtml('Développé Militaire Machine Prise Neutre','Faisceau antérieur épaule','2-3s','8-12','','poly'));
-  h += blocHtml('🎯 ÉCARTÉ HALTÈRE BANC INCLINÉ', [{cls:'t-leger',txt:'PECS'}], '',
-    exoHtml('Écarté Haltère Banc Incliné','Haut des pecs · alternative : Écarté Poulie si dispo','2-3s','12-20','c-leger','iso'));
   h += blocHtml('🦾 REVERSE CURL × MAGIC TRICEPS — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
     exoHtml('Reverse Curl','Avant-bras · brachioradial','2-3s','8-12','c-leger','iso') +
     exoHtml('Magic Triceps','Triceps · chef long · amplitude maximale','2-3s','8-12','','iso'));
+  h += blocHtml('🎯 ÉCARTÉ POULIE — FINISHER PEC', [{cls:'t-leger',txt:'À CONFIRMER'}], '',
+    exoHtml('Écarté Poulie','Haut/milieu des pecs · isolation · placeholder, alternative Shrug Gundill à trancher','1-2s','12-20','c-leger','iso'));
   h += blocHtml('🔒 TRISET COU × EXTENSION POIGNET', [{cls:'t-neutre',txt:'—'}], '',
     exoHtml('Flexion Cou','Fléchisseurs nuque','2-3s','12-20','') +
     exoHtml('Extension Cou','Extenseurs nuque','2-3s','12-20','') +
@@ -403,17 +402,18 @@ function htmlPushB() {
 
 function htmlPullA() {
   var h = '';
-  h += blocHtml('🏋️ ROWING HALTÈRE UNILATÉRAL BANC', [{cls:'t-lourd',txt:'—'}], '',
-    exoHtml('Rowing Haltère Unilatéral Banc','Dos épaisseur · torse soutenu · sans stress lombaire','3-4s','8-12','c-lourd','poly'));
-  h += blocHtml('🏋️ ROWING HAMMER × SHRUG — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
-    exoHtml('Rowing Hammer','Dos épaisseur','2s','8-12','','poly') +
-    exoHtml('Shrug','Trapèzes supérieurs','2s','6-10','','iso'));
-  h += blocHtml('🎯 FACE PULL', [{cls:'t-leger',txt:'LÉGER'}], '',
-    exoHtml('Face Pull','Épaule postérieure · rotateurs externes','2-3s','12-20','c-leger','iso'));
-  h += blocHtml('🏋️ ROWING POULIE', [{cls:'t-neutre',txt:'—'}], '',
-    exoHtml('Rowing Poulie','Dos épaisseur · bilatéral','2-3s','8-12','','poly'));
-  h += blocHtml('🎯 OISEAU POULIE', [{cls:'t-leger',txt:'LÉGER'}], '',
-    exoHtml('Oiseau Poulie','Épaule postérieure','2-3s','12-20','c-leger','iso'));
+  h += blocHtml('🏋️ ROWING MENTON — OUVERTURE', [{cls:'t-neutre',txt:'OUVERTURE'}], '',
+    exoHtml('Rowing Menton','Trapèze · deltoïde · tirage vertical · ouvre la séance · tester à charge légère (risque conflit épaule)','2-3s','8-12','','poly'));
+  h += blocHtml('🏋️ ROWING HALTÈRE UNILATÉRAL BANC — PRINCIPAL', [{cls:'t-lourd',txt:'PRINCIPAL'}], '',
+    exoHtml('Rowing Haltère Unilatéral Banc','Dos épaisseur · torse soutenu · sans stress lombaire · dernière série en rest-pause','2-3s','8-12','c-lourd','poly'));
+  h += blocHtml('🏋️ ROWING HAMMER', [{cls:'t-neutre',txt:'—'}], '',
+    exoHtml('Rowing Hammer','Dos épaisseur','2-3s','8-12','','poly'));
+  h += blocHtml('🎯 OISEAU MACHINE HAMMER', [{cls:'t-leger',txt:'LÉGER'}], '',
+    exoHtml('Oiseau Machine Hammer','Épaule postérieure · dernière série en myo-reps','2-3s','12-20','c-leger','iso'));
+  h += blocHtml('🔥 SHRUG', [{cls:'t-neutre',txt:'FINISHER'}], '',
+    exoHtml('Shrug','Trapèzes supérieurs · contraction maintenue 3s en haut','2-3s','6-10','','iso'));
+  h += blocHtml('🚶 FARMER WALK HALTÈRES', [{cls:'t-neutre',txt:'FINISHER'}], '',
+    exoHtml('Farmer Walk Haltères','Grip isométrique · trapèzes · gainage global','2s','20-30m','',''));
   return h;
 }
 
@@ -440,31 +440,30 @@ function htmlJambesA() {
   h += blocHtml('🚶 FENTES BULGARES', [{cls:'t-neutre',txt:'QUALITÉ'}], '',
     exoHtml('Fentes Bulgares Smith','Quad · fessier','2-3s','8-12','','poly'));
   h += blocHtml('🦵 LEG EXTENSION UNI', [{cls:'t-leger',txt:'LÉGER'}], '',
-    exoHtml('Leg Extension Uni','Quad isolation','2-3s','8-12','c-leger','iso'));
+    exoHtml('Leg Extension Uni','Quad isolation · dès S4, dernière série en myo-reps','1-2s','8-12','c-leger','iso'));
   h += blocHtml('💥 CRUNCH POULIE × MOLLET PRESSE VERTICAL — SS', [{cls:'t-ss',txt:'SS'}], 'bracket-gold',
-    exoHtml('Crunch Poulie','Abdos','3-4s','10-20','','iso') +
-    exoHtml('Mollet Presse Vertical','Gastrocnémien','3-4s','15-20','','iso'));
+    exoHtml('Crunch Poulie','Abdos · dernière série en rest-pause','2-3s','10-20','','iso') +
+    exoHtml('Mollet Presse Vertical','Gastrocnémien · dernière série en myo-reps','2-3s','15-20','','iso'));
   h += blocHtml('🔲 ADDUCTEUR LOURD — FIN DE SÉANCE', [{cls:'t-lourd',txt:'LOURD'}], '',
-    exoHtml('Adducteur','Lourd · fin de séance · échec rapide dans le cycle','2-3s','15-20','c-lourd','echec'));
+    exoHtml('Adducteur','Lourd · fin de séance · échec rapide dans le cycle','2s','15-20','c-lourd','echec'));
   return h;
 }
 
 function htmlJambesB() {
   var h = '';
   h += blocHtml('🏋️ RDL', [{cls:'t-lourd',txt:'—'}], '',
-    exoHtml('RDL','Ischios · lombaires','3-4s','8-10','c-lourd','poly'));
+    exoHtml('RDL','Ischios · lombaires · tempo 3-2-2-2','2-3s','8-10','c-lourd','poly'));
   h += blocHtml('🍑 HIP THRUST', [{cls:'t-neutre',txt:'—'}], '',
     exoHtml('Hip Thrust','Fessier','2-3s','8-12','','poly'));
-  h += blocHtml('🦵 LEG CURL UNI', [{cls:'t-leger',txt:'LÉGER'}], '',
-    exoHtml('Leg Curl Uni','Ischios isolation','3-4s','8-12','c-leger','iso'));
+  h += blocHtml('🦵 LEG CURL', [{cls:'t-leger',txt:'LÉGER'}], '',
+    exoHtml('Leg Curl','Ischios isolation · bilatéral · dernière série en double rest-pause','2-3s','8-12','c-leger','iso'));
   h += blocHtml('🦵 MOLLET BELT SQUAT', [{cls:'t-neutre',txt:'—'}], '',
     exoHtml('Mollet Belt Squat','Gastrocnémien','3-4s','15-20','','iso'));
-  h += blocHtml('🔲 ABDUCTEUR × ADDUCTEUR — SS · FIN DE SÉANCE', [{cls:'t-ss',txt:'SS'},{cls:'t-lourd',txt:'LOURD'}], 'bracket-lourd',
-    exoHtml('Abducteur','Fessier moyen · fin de séance · échec rapide','2-3s','15-20','c-lourd','echec') +
+  h += blocHtml('🔲 ADDUCTEUR — FIN DE SÉANCE', [{cls:'t-lourd',txt:'LOURD'}], '',
     exoHtml('Adducteur','Fin de séance · échec rapide dans le cycle','2-3s','15-20','c-lourd','echec'));
   h += blocHtml('💥 ABDOS', [{cls:'t-neutre',txt:'—'}], '',
     exoHtml('Toes to Bar','Abdos bas','2-3s','max','') +
-    exoHtml('Relevé de Jambes','Abdos bas','2-3s','15-20',''));
+    exoHtml('Relevé de Jambes','Abdos bas · dernière série en myo-reps','2-3s','15-20','','iso'));
   return h;
 }
 
@@ -524,12 +523,12 @@ function renderProg() {
 
 // ── SAISIE ──
 var DEX = {
-  'PUSH A': ['Élévation Latérale Machine','Développé Hammer Unilatéral','Pinwheel Curl','Dips','Traction Supination','Pec Deck','Bayesian Curl','Triceps Extension Poulie','Flexion Cou','Extension Cou','Extension Poignet Avant-bras'],
-  'PULL A': ['Rowing Haltère Unilatéral Banc','Rowing Hammer','Shrug','Face Pull','Rowing Poulie','Oiseau Poulie'],
+  'PUSH A': ['Élévation Latérale Machine','Développé Couché Haltères Semi-Incliné 30°','Pinwheel Curl','Dips','Traction Supination','Pec Deck','Bayesian Curl','Triceps Extension Poulie','Flexion Cou','Extension Cou','Extension Poignet Avant-bras'],
+  'PULL A': ['Rowing Menton','Rowing Haltère Unilatéral Banc','Rowing Hammer','Oiseau Machine Hammer','Shrug','Farmer Walk Haltères'],
   'JAMBES A': ['Pendulum Squat','Tibia Raises','Fentes Bulgares Smith','Leg Extension Uni','Crunch Poulie','Mollet Presse Vertical','Adducteur'],
-  'PUSH B': ['Curl Larry Scott','Curl Incliné','Développé Incliné Haltères','Développé Incliné Smith','Écarté Haltère Banc Incliné','Développé Militaire Machine Prise Neutre','Reverse Curl','Magic Triceps','Flexion Cou','Extension Cou','Extension Poignet Avant-bras'],
+  'PUSH B': ['Développé Hammer Unilatéral','Curl Larry Scott','Développé Militaire Machine Prise Neutre','Curl Incliné','Reverse Curl','Magic Triceps','Écarté Poulie','Shrug Gundill','Flexion Cou','Extension Cou','Extension Poignet Avant-bras'],
   'PULL B': ['Élévation Latérale Poulie Unilatéral','Traction Neutre','Tirage Vertical Hammer Uni','Pull Over Élastique','Tirage Nuque'],
-  'JAMBES B': ['RDL','Hip Thrust','Leg Curl Uni','Mollet Belt Squat','Abducteur','Adducteur','Toes to Bar','Relevé de Jambes'],
+  'JAMBES B': ['RDL','Hip Thrust','Leg Curl','Mollet Belt Squat','Adducteur','Toes to Bar','Relevé de Jambes'],
   'Cardio / autre': ['Fractionné VO2max','Sortie Longue Z2','Marche Inclinée','Elliptique','Stepper','Footing Z2']
 };
 
